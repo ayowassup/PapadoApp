@@ -51,6 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"></Spinner>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,6 +71,7 @@
                         android:hint="Username" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,6 +91,7 @@
                         android:hint="Email" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -108,6 +111,7 @@
                         android:hint="Telepon" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,6 +131,7 @@
                         android:hint="Kata Sandi" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,12 +151,13 @@
                         android:hint="Konfirmasi Sandi" />
 
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/daftar_namatempat_text_hidden"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:visibility="gone"
-                    android:id="@+id/daftar_namatempat_text_hidden">
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="32dp"
@@ -169,5 +175,18 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/daftar_button_daftar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="daftar" />
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
