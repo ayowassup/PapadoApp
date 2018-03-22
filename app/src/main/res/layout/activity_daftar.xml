@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,15 +11,23 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:orientation="vertical"
-        android:paddingRight="32dp"
         android:paddingLeft="32dp"
-        >
+        android:paddingRight="32dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Daftar"
             android:textSize="32sp" />
+
+        <Spinner
+            android:id="@+id/spinner_jenisuser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </Spinner>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,10 +42,10 @@
                 android:src="@drawable/logo" />
 
             <EditText
-                android:id="@+id/login_username_text"
+                android:id="@+id/daftar_username_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="username" />
+                android:hint="Username" />
 
         </LinearLayout>
 
@@ -55,10 +62,48 @@
                 android:src="@drawable/logo" />
 
             <EditText
-                android:id="@+id/login_password_text"
+                android:id="@+id/daftar_email_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="password" />
+                android:hint="Email" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
+
+            <EditText
+                android:id="@+id/daftar_password_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Sandi" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
+
+            <EditText
+                android:id="@+id/daftar_repassword_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Konfirmasi Sandi" />
         </LinearLayout>
 
     </LinearLayout>

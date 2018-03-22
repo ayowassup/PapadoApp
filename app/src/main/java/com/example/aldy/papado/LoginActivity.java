@@ -1,5 +1,6 @@
 package com.example.aldy.papado;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, DaftarActivity.class);
+                startActivity(intent);
                 //kode kalau tombol daftar diklik
             }
         });
