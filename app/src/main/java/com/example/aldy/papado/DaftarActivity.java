@@ -18,7 +18,7 @@ public class DaftarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
-
+//
         Spinner spinner = findViewById(R.id.spinner_jenisuser);
         ArrayAdapter<String> adapter = new ArrayAdapter(DaftarActivity.this, android.R.layout.simple_spinner_item, jenis_user);
 
@@ -29,12 +29,12 @@ public class DaftarActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // Kalau ada yang dipilih. Bisa dipanggil pake
                 //adapterView.getItemAtPosition(i)
-
-                //INI ERROR GATAU KENAPA
-//                LinearLayout linearLayout = findViewById(R.id.daftar_namatempat_text_hidden);
-//                if (i!=0){
-//                    linearLayout.setVisibility(View.VISIBLE);
-//                }
+                LinearLayout a = findViewById(R.id.daftar_namatempat_text_hidden);
+                if (adapterView.getItemAtPosition(i) != "Penyewa"){
+                    a.setVisibility(View.VISIBLE);
+                }
+                else
+                    a.setVisibility(View.GONE);
             }
 
             @Override
