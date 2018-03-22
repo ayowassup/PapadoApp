@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 public class DaftarActivity extends AppCompatActivity {
@@ -28,6 +29,10 @@ public class DaftarActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // Kalau ada yang dipilih. Bisa dipanggil pake
                 // adapterView.getItemAtPosition(i)
+                LinearLayout linearLayout = findViewById(R.id.daftar_namatempat_text_hidden);
+                if (i!=0){
+                    linearLayout.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

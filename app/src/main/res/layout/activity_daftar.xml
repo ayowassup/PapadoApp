@@ -22,89 +22,116 @@
             android:text="Daftar"
             android:textSize="32sp" />
 
-        <Spinner
-            android:id="@+id/spinner_jenisuser"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-        </Spinner>
+            <Spinner
+                android:id="@+id/spinner_jenisuser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+            </Spinner>
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:padding="2dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo" />
-
-            <EditText
-                android:id="@+id/daftar_username_text"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username" />
+                android:gravity="center">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+                <EditText
+                    android:id="@+id/daftar_username_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:padding="2dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/daftar_email_text"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email" />
-        </LinearLayout>
+                android:gravity="center"
+                android:id="@+id/daftar_namatempat_text_hidden"
+                android:visibility="gone">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:padding="2dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo" />
+                <EditText
+                    android:id="@+id/daftar_namatempat_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username" />
 
-            <EditText
-                android:id="@+id/daftar_password_text"
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Sandi" />
-        </LinearLayout>
+                android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:padding="2dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo" />
+                <EditText
+                    android:id="@+id/daftar_email_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/daftar_repassword_text"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Konfirmasi Sandi" />
-        </LinearLayout>
+                android:gravity="center">
 
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
+
+                <EditText
+                    android:id="@+id/daftar_password_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Sandi" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
+
+                <EditText
+                    android:id="@+id/daftar_repassword_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Konfirmasi Sandi" />
+            </LinearLayout>
+
+        </ScrollView>
     </LinearLayout>
 </RelativeLayout>
