@@ -1,7 +1,9 @@
 package com.example.aldy.papado;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +15,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextView lupapassword = findViewById(R.id.login_lupapassword_text);
+        final TextView lupapassword = findViewById(R.id.login_lupapassword_text);
+        lupapassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        lupapassword.setTextColor(Color.parseColor("#F3D06A"));
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        lupapassword.setTextColor(Color.parseColor("#5A999A"));
+                        break;
+                }
+                return false;
+            }
+        });
         lupapassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
