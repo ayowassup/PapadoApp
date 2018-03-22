@@ -28,11 +28,13 @@ public class DaftarActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // Kalau ada yang dipilih. Bisa dipanggil pake
-                // adapterView.getItemAtPosition(i)
-                LinearLayout linearLayout = findViewById(R.id.daftar_namatempat_text_hidden);
-                if (i!=0){
-                    linearLayout.setVisibility(View.VISIBLE);
-                }
+                //adapterView.getItemAtPosition(i)
+
+                //INI ERROR GATAU KENAPA
+//                LinearLayout linearLayout = findViewById(R.id.daftar_namatempat_text_hidden);
+//                if (i!=0){
+//                    linearLayout.setVisibility(View.VISIBLE);
+//                }
             }
 
             @Override
