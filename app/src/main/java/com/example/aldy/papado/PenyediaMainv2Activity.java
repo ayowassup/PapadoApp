@@ -1,5 +1,6 @@
 package com.example.aldy.papado;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,23 @@ public class PenyediaMainv2Activity extends AppCompatActivity {
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigationView = findViewById(R.id.penyedia_nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+//                        menuItem.setChecked(true);
+                        // close drawer when item is tapped
+                        mDrawerLayout.closeDrawers();
+
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+
+                        return true;
+                    }
+                });
 
     }
 
