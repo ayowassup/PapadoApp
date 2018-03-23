@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                 //kode kalau tombol masuk diklik
             }
         });
-        Button daftar = findViewById(R.id.login_button_daftar);
+        TextView daftar = findViewById(R.id.login_button_daftar);
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

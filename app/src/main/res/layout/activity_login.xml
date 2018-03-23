@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aldy.papado.LoginActivity">
+    tools:context="com.example.aldy.papado.LoginActivity"
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,15 +75,28 @@
 
             <Button
                 android:id="@+id/login_button_masuk"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="masuk" />
+                android:background="@drawable/roundedbutton"
+                android:text="masuk"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimaryDark"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum memiliki akun? "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DAFTAR"
+                    android:textStyle="italic|bold"
+                    android:id="@+id/login_button_daftar"
+                    />
 
-            <Button
-                android:id="@+id/login_button_daftar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="daftar" />
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aldy.papado.DaftarActivity">
+    tools:context="com.example.aldy.papado.DaftarActivity"
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,7 +112,48 @@
                         android:hint="Telepon" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/daftar_namatempat_text_hidden"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="gone">
 
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:padding="2dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/logo" />
+
+                    <EditText
+                        android:id="@+id/daftar_namatempat_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Tempat" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/daftar_alamat_text_hidden"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:padding="2dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/logo" />
+
+                    <EditText
+                        android:id="@+id/daftar_alamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alamat" />
+
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,27 +194,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/daftar_namatempat_text_hidden"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:visibility="gone">
 
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
-
-                    <EditText
-                        android:id="@+id/daftar_namatempat_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Nama Tempat" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -198,9 +220,11 @@
 
             <Button
                 android:id="@+id/daftar_button_daftar"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="daftar" />
+                android:background="@drawable/roundedbutton"
+                android:layout_gravity="center"
+                android:text="daftar"/>
 
         </LinearLayout>
     </LinearLayout>
