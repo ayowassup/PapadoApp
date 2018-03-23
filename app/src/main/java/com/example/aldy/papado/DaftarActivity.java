@@ -48,7 +48,7 @@ public class DaftarActivity extends AppCompatActivity {
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DaftarActivity.this,PenyediaMainActivity.class);
+                Intent intent = new Intent(DaftarActivity.this,PenyediaMainv2Activity.class);
                 startActivity(intent);
                 finish();
                 //kode kalau tombol daftar diklik

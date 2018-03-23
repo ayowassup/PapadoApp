@@ -24,7 +24,10 @@
         <activity
             android:name=".DaftarActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PenyediaMainActivity"
+        <activity
+            android:name=".PenyediaMainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PenyediaMainv2Activity"
             android:screenOrientation="portrait"/>
     </application>
 
