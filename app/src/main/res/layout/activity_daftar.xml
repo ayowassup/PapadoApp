@@ -21,7 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Daftar"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:textColor="@color/colorAccent"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -33,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -50,7 +52,9 @@
                     <Spinner
                         android:id="@+id/spinner_jenisuser"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></Spinner>
+                        android:layout_height="wrap_content"
+                        android:theme="@style/mySpinnerItemStyle"
+                        ></Spinner>
                 </LinearLayout>
 
                 <LinearLayout
@@ -69,7 +73,8 @@
                         android:id="@+id/daftar_username_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Username" />
+                        android:hint="Username"
+                        android:backgroundTint="@color/colorAccent"/>
 
                 </LinearLayout>
 
@@ -89,7 +94,8 @@
                         android:id="@+id/daftar_email_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Email" />
+                        android:hint="Email"
+                        android:backgroundTint="@color/colorAccent"/>
 
                 </LinearLayout>
 
@@ -109,7 +115,8 @@
                         android:id="@+id/daftar_telepon_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Telepon" />
+                        android:hint="Telepon"
+                        android:backgroundTint="@color/colorAccent"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -130,7 +137,8 @@
                         android:id="@+id/daftar_namatempat_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nama Tempat" />
+                        android:hint="Nama Tempat"
+                        android:backgroundTint="@color/colorAccent"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -151,7 +159,8 @@
                         android:id="@+id/daftar_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Alamat" />
+                        android:hint="Alamat"
+                        android:backgroundTint="@color/colorAccent"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,7 +178,8 @@
                         android:id="@+id/daftar_password_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Kata Sandi" />
+                        android:hint="Kata Sandi"
+                        android:backgroundTint="@color/colorAccent"/>
 
                 </LinearLayout>
 
@@ -189,7 +199,8 @@
                         android:id="@+id/daftar_repassword_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Konfirmasi Sandi" />
+                        android:hint="Konfirmasi Sandi"
+                        android:backgroundTint="@color/colorAccent"/>
 
                 </LinearLayout>
 
@@ -207,7 +218,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="Dengan mendaftar, saya setuju dengan semua persyaratan layanan" />
+                        android:text="Dengan mendaftar, saya setuju dengan semua pernyataan dan persyaratan layanan"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorAccent"
+                        />
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -219,11 +234,13 @@
 
             <Button
                 android:id="@+id/daftar_button_daftar"
-                android:layout_width="150dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/roundedbutton"
                 android:layout_gravity="center"
-                android:text="daftar"/>
+                android:text="daftar"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"/>
 
         </LinearLayout>
     </LinearLayout>

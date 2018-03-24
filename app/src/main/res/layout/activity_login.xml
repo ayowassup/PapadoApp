@@ -21,7 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:textColor="@color/colorAccent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +40,8 @@
                 android:id="@+id/login_username_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="username" />
+                android:hint="Username"
+                android:backgroundTint="@color/colorAccent"/>
 
         </LinearLayout>
 
@@ -59,14 +61,16 @@
                 android:id="@+id/login_password_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="password" />
+                android:hint="Password"
+                android:backgroundTint="@color/colorAccent"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/login_lupapassword_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lupa password?" />
+            android:text="lupa password?"
+            android:textColor="@color/colorAccent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,25 +79,29 @@
 
             <Button
                 android:id="@+id/login_button_masuk"
-                android:layout_width="150dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/roundedbutton"
                 android:text="masuk"
                 android:layout_gravity="center"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Belum memiliki akun? "/>
+                    android:text="Belum memiliki akun? "
+                    android:textColor="@color/colorAccent"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DAFTAR"
                     android:textStyle="italic|bold"
                     android:id="@+id/login_button_daftar"
+                    android:textColor="@color/colorAccent"
                     />
 
             </LinearLayout>

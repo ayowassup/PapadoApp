@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
                         lupapassword.setTextColor(Color.parseColor("#F3D06A"));
                         break;
                     case MotionEvent.ACTION_UP:
-                        lupapassword.setTextColor(Color.parseColor("#5A999A"));
+                        lupapassword.setTextColor(getResources().getColor(R.color.colorAccent));
                         break;
                 }
                 return false;

@@ -21,7 +21,7 @@ public class DaftarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_daftar);
 //
         Spinner spinner = findViewById(R.id.spinner_jenisuser);
-        ArrayAdapter<String> adapter = new ArrayAdapter(DaftarActivity.this, android.R.layout.simple_spinner_item, jenis_user);
+        ArrayAdapter<String> adapter = new ArrayAdapter(DaftarActivity.this, R.layout.spinner_item, jenis_user);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
