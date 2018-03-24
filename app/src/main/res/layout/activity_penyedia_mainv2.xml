@@ -18,11 +18,15 @@
             />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Penyedia main v2"
             android:layout_gravity="center"
             android:textAlignment="center"
             android:textSize="24sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asdfasdfsadf"/>
     </LinearLayout>
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"

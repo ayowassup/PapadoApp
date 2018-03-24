@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item
-        android:id="@+id/penyedia_nav_halamansaya"
-        android:icon="@drawable/ic_account_circle_black_48dp"
-        android:title="Halaman Saya"
-        />
-    <item
-        android:id="@+id/penyedia_nav_pemesanan"
-        android:icon="@drawable/ic_account_circle_black_48dp"
-        android:title="Pemesanan"
-        />
-    <item
-        android:id="@+id/penyedia_nav_jenislapangan"
-        android:icon="@drawable/ic_account_circle_black_48dp"
-        android:title="Jenis Lapangan"
-        />
-    <item
-        android:id="@+id/penyedia_nav_pengaturan"
-        android:icon="@drawable/ic_account_circle_black_48dp"
-        android:title="Pengaturan"
-        />
-    <item
-        android:id="@+id/penyedia_nav_keluar"
-        android:icon="@drawable/ic_account_circle_black_48dp"
-        android:title="Keluar"
-        />
-    <item
-        android:id="@+id/penyedia_nav_hapusakun"
-        android:icon="@drawable/ic_account_circle_black_48dp"
-        android:title="Hapus Akun"
-        />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/penyedia_nav_profile"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/penyedia_nav_halamansaya"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Halaman Saya" />
+        <item
+            android:id="@+id/penyedia_nav_pemesanan"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Pemesanan" />
+    </group>
+    <group
+        android:id="@+id/penyedia_nav_lapangan"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/penyedia_nav_jenislapangan"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Jenis Lapangan" />
+    </group>
+    <group
+        android:id="@+id/penyedia_nav_logout"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/penyedia_nav_pengaturan"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Pengaturan" />
+        <item
+            android:id="@+id/penyedia_nav_keluar"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Keluar" />
+        <item
+            android:id="@+id/penyedia_nav_hapusakun"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Hapus Akun" />
+    </group>
 </menu>

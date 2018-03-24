@@ -28,7 +28,8 @@
             android:name=".PenyediaMainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".PenyediaMainv2Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:label="LAPANGAN"/>
     </application>
 
 </manifest>
