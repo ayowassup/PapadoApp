@@ -56,4 +56,10 @@ public class PenyediaMainv2Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //ini method yang melarang tombol kembali
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
 }
