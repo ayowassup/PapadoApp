@@ -19,7 +19,7 @@ public class DaftarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
-//
+
         Spinner spinner = findViewById(R.id.spinner_jenisuser);
         ArrayAdapter<String> adapter = new ArrayAdapter(DaftarActivity.this, R.layout.spinner_item, jenis_user);
 

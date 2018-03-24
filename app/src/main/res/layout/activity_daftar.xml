@@ -45,10 +45,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <Spinner
                         android:id="@+id/spinner_jenisuser"
@@ -64,10 +62,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <EditText
                         android:id="@+id/daftar_username_text"
@@ -85,10 +81,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <EditText
                         android:id="@+id/daftar_email_text"
@@ -106,10 +100,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <EditText
                         android:id="@+id/daftar_telepon_text"
@@ -129,10 +121,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <EditText
                         android:id="@+id/daftar_namatempat_text"
@@ -152,10 +142,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <EditText
                         android:id="@+id/daftar_alamat"
@@ -172,10 +160,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <EditText
                         android:id="@+id/daftar_password_text"
@@ -194,10 +180,8 @@
 
                     <ImageView
                         android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:padding="2dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo" />
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <EditText
                         android:id="@+id/daftar_repassword_text"
