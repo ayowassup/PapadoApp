@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //kode kalau text lupa password diklik
+
             }
         });
         Button masuk = findViewById(R.id.login_button_masuk);
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, DaftarActivity.class);
                 startActivity(intent);
                 //kode kalau tombol daftar diklik
+
             }
         });
     }
