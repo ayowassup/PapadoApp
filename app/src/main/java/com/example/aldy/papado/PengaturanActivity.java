@@ -8,11 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class PengaturanActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,22 @@ public class PengaturanActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+        Button logout = findViewById(R.id.penydia_button_logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //kode kalau tombol logout dipencet
+            }
+        });
+        Button delacc = findViewById(R.id.penydia_button_deleteacc);
+        delacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //kode kalau tombol logout dipencet
+            }
+        });
+
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
@@ -74,6 +93,7 @@ public class PengaturanActivity extends AppCompatActivity {
                 break;
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mToggle.onOptionsItemSelected(item)) {
@@ -81,6 +101,7 @@ public class PengaturanActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onBackPressed() {
         Intent jenislapangan = new Intent(PengaturanActivity.this, PenyediaMainActivity.class);

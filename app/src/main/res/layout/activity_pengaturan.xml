@@ -22,6 +22,17 @@
             android:text="Disini ada pengaturan"
             android:textAlignment="center"
             android:textSize="24sp" />
+        <Button
+            android:id="@+id/penydia_button_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"/>
+        <Button
+            android:id="@+id/penydia_button_deleteacc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete account"/>
+
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
