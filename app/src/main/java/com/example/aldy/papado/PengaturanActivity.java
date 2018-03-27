@@ -24,7 +24,7 @@ public class PengaturanActivity extends AppCompatActivity {
         mDrawerLayout = findViewById(R.id.penyedia_drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
-        mDrawerLayout.addDrawerListener(mToggle);
+        mDrawerLayout.setDrawerListener(mToggle);
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,24 +49,43 @@ public class PengaturanActivity extends AppCompatActivity {
                     }
                 });
     }
-    public void penyedia_pindahactivity (MenuItem menuItem){
+
+    public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.penyedia_nav_halamansaya:
                 Intent halamansaya = new Intent(PengaturanActivity.this, HalamanSayaActivity.class);
                 startActivity(halamansaya);
+                finish();
                 break;
             case R.id.penyedia_nav_pemesanan:
                 Intent pemesanan = new Intent(PengaturanActivity.this, PemesananActivity.class);
                 startActivity(pemesanan);
+                finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
                 Intent pengaturan = new Intent(PengaturanActivity.this, PengaturanActivity.class);
                 startActivity(pengaturan);
+                finish();
                 break;
             case R.id.penyedia_nav_jenislapangan:
                 Intent jenislapangan = new Intent(PengaturanActivity.this, PenyediaMainActivity.class);
                 startActivity(jenislapangan);
+                finish();
                 break;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent jenislapangan = new Intent(PengaturanActivity.this, PenyediaMainActivity.class);
+        startActivity(jenislapangan);
+        finish();
+//        super.onBackPressed();
     }
 }

@@ -27,7 +27,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
         mDrawerLayout = findViewById(R.id.penyedia_drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
-        mDrawerLayout.addDrawerListener(mToggle);
+        mDrawerLayout.setDrawerListener(mToggle);
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -38,7 +38,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
 //                         set item as selected to persist highlight
-//                        menuItem.setChecked(true);
+                        menuItem.setChecked(true);
 
                         penyedia_pindahactivity(menuItem);
 
@@ -59,18 +59,22 @@ public class PenyediaMainActivity extends AppCompatActivity {
             case R.id.penyedia_nav_halamansaya:
                 Intent halamansaya = new Intent(PenyediaMainActivity.this, HalamanSayaActivity.class);
                 startActivity(halamansaya);
+                finish();
                 break;
             case R.id.penyedia_nav_pemesanan:
                 Intent pemesanan = new Intent(PenyediaMainActivity.this, PemesananActivity.class);
                 startActivity(pemesanan);
+                finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
                 Intent pengaturan = new Intent(PenyediaMainActivity.this, PengaturanActivity.class);
                 startActivity(pengaturan);
+                finish();
                 break;
             case R.id.penyedia_nav_jenislapangan:
                 Intent jenislapangan = new Intent(PenyediaMainActivity.this, PenyediaMainActivity.class);
                 startActivity(jenislapangan);
+                finish();
                 break;
         }
     }

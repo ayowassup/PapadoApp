@@ -29,13 +29,5 @@
             android:id="@+id/penyedia_nav_pengaturan"
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Pengaturan" />
-        <item
-            android:id="@+id/penyedia_nav_keluar"
-            android:icon="@drawable/ic_account_circle_black_48dp"
-            android:title="Keluar" />
-        <item
-            android:id="@+id/penyedia_nav_hapusakun"
-            android:icon="@drawable/ic_account_circle_black_48dp"
-            android:title="Hapus Akun" />
     </group>
 </menu>

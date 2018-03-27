@@ -31,7 +31,6 @@
         <activity android:name=".HalamanSayaActivity" />
         <activity android:name=".PemesananActivity" />
         <activity android:name=".PengaturanActivity" />
-        <activity android:name=".LogoutActivity"></activity>
     </application>
 
 </manifest>
