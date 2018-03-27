@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 public class PenyediaMainActivity extends AppCompatActivity {
@@ -39,23 +40,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
 //                         set item as selected to persist highlight
 //                        menuItem.setChecked(true);
 
-                        switch (menuItem.getItemId()) {
-                            case R.id.penyedia_nav_halamansaya:
-                                Intent halamansaya = new Intent(PenyediaMainActivity.this, HalamanSayaActivity.class);
-                                startActivity(halamansaya);
-                                break;
-                            case R.id.penyedia_nav_pemesanan:
-                                Intent pemesanan = new Intent(PenyediaMainActivity.this, PemesananActivity.class);
-                                startActivity(pemesanan);
-                                break;
-                            case R.id.penyedia_nav_pengaturan:
-                                Intent pengaturan = new Intent(PenyediaMainActivity.this, PengaturanActivity.class);
-                                startActivity(pengaturan);
-                                break;
-                            case R.id.penyedia_nav_keluar:
-                                //kode kalau dia tekan logout
-                                break;
-                        }
+                        penyedia_pindahactivity(menuItem);
 
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
@@ -67,6 +52,27 @@ public class PenyediaMainActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void penyedia_pindahactivity (MenuItem menuItem){
+        switch (menuItem.getItemId()) {
+            case R.id.penyedia_nav_halamansaya:
+                Intent halamansaya = new Intent(PenyediaMainActivity.this, HalamanSayaActivity.class);
+                startActivity(halamansaya);
+                break;
+            case R.id.penyedia_nav_pemesanan:
+                Intent pemesanan = new Intent(PenyediaMainActivity.this, PemesananActivity.class);
+                startActivity(pemesanan);
+                break;
+            case R.id.penyedia_nav_pengaturan:
+                Intent pengaturan = new Intent(PenyediaMainActivity.this, PengaturanActivity.class);
+                startActivity(pengaturan);
+                break;
+            case R.id.penyedia_nav_jenislapangan:
+                Intent jenislapangan = new Intent(PenyediaMainActivity.this, PenyediaMainActivity.class);
+                startActivity(jenislapangan);
+                break;
+        }
     }
 
     @Override

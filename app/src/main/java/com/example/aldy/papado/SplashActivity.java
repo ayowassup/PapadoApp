@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private int sleep_time = 3;
+    private int sleep_time = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
             }
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
-            SplashActivity.this.finish();
+            finish();
         }
 
 
