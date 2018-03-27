@@ -28,9 +28,12 @@
         <activity
             android:name=".PenyediaMainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".HalamanSayaActivity" />
-        <activity android:name=".PemesananActivity" />
-        <activity android:name=".PengaturanActivity" />
+        <activity android:name=".HalamanSayaActivity"
+            android:label="Profil saya"/>
+        <activity android:name=".PemesananActivity"
+            android:label="Pemesanan"/>
+        <activity android:name=".PengaturanActivity"
+            android:label="Pengaturan"/>
     </application>
 
 </manifest>
