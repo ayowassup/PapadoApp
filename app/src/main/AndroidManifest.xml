@@ -28,9 +28,10 @@
         <activity
             android:name=".PenyediaMainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PenyediaMainv2Activity"
-            android:screenOrientation="portrait"
-            android:label="LAPANGAN"/>
+        <activity android:name=".HalamanSayaActivity" />
+        <activity android:name=".PemesananActivity" />
+        <activity android:name=".PengaturanActivity" />
+        <activity android:name=".LogoutActivity"></activity>
     </application>
 
 </manifest>
