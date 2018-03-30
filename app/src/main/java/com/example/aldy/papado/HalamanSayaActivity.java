@@ -8,11 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 public class HalamanSayaActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
+    private LinearLayout tambah_lap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,16 @@ public class HalamanSayaActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+        tambah_lap = findViewById(R.id.penyedia_tambahlap);
+        tambah_lap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (HalamanSayaActivity.this, TambahlapActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {

@@ -52,20 +52,7 @@ public class PengaturanActivity extends AppCompatActivity {
                     }
                 });
 
-        Button logout = findViewById(R.id.penyedia_button_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kode kalau tombol logout dipencet
-            }
-        });
-        Button delacc = findViewById(R.id.penyedia_button_deleteacc);
-        delacc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kode kalau tombol logout dipencet
-            }
-        });
+
 
     }
 

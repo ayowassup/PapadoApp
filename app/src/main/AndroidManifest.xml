@@ -28,12 +28,16 @@
         <activity
             android:name=".PenyediaMainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".HalamanSayaActivity"
-            android:label="Profil saya"/>
-        <activity android:name=".PemesananActivity"
-            android:label="Pemesanan"/>
-        <activity android:name=".PengaturanActivity"
-            android:label="Pengaturan"/>
+        <activity
+            android:name=".HalamanSayaActivity"
+            android:label="Profil saya" />
+        <activity
+            android:name=".PemesananActivity"
+            android:label="Pemesanan" />
+        <activity
+            android:name=".PengaturanActivity"
+            android:label="Pengaturan" />
+        <activity android:name=".TambahlapActivity"></activity>
     </application>
 
 </manifest>
