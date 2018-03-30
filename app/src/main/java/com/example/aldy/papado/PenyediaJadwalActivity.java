@@ -8,13 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class PenyediaJadwalActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-
+    private Button tambah;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,17 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+        tambah = findViewById(R.id.penyedia_jadwal_tambah);
+        tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //kalau tambah jadwal diklik
+                Intent intent = new Intent(PenyediaJadwalActivity.this, PenyediaJadwalTambahActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {

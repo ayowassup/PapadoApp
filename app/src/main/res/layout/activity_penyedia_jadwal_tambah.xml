@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.aldy.papado.PenyediaEditprofilActivity">
+    tools:context="com.example.aldy.papado.PenyediaJadwalTambahActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="edit profil"
+            android:text="tambah jadwal"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#ffffff"
@@ -29,42 +29,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp">
+        android:orientation="vertical">
 
         <EditText
-            android:id="@+id/penyedia_edit_venue"
+            android:id="@+id/penyedia_jadwal_tambah_jam1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ini venue penyedia" />
+            android:hint="Jam..."
+            android:textColorHint="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hingga" />
 
         <EditText
-            android:id="@+id/penyedia_edit_nama"
+            android:id="@+id/penyedia_jadwal_tambah_jam2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ini pemilik penyedia" />
-
-        <EditText
-            android:id="@+id/penyedia_edit_alamat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ini alamat penyedia" />
-
-        <EditText
-            android:id="@+id/penyedia_edit_notelp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ini no telp penyedia" />
-
-        <EditText
-            android:id="@+id/penyedia_edit_jam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ini jam buka tutup penyedia" />
+            android:hint="Jam..."
+            android:textColorHint="@color/colorPrimary" />
 
         <Button
-            android:id="@+id/penyedia_save_edit"
+            android:id="@+id/penyedia_jadwal_tambah_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="simpan" />

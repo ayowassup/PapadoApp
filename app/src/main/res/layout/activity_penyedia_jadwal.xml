@@ -17,7 +17,11 @@
             layout="@layout/penyedia_nav_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
+        <Button
+            android:id="@+id/penyedia_jadwal_tambah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tambah jadwal"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
