@@ -11,6 +11,10 @@
             android:id="@+id/penyedia_nav_pemesanan"
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Pemesanan" />
+        <item
+            android:id="@+id/penyedia_nav_jadwal"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Jadwal" />
     </group>
     <group
         android:id="@+id/penyedia_nav_lapangan"
