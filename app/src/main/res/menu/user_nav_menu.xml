@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group
+        android:id="@+id/user_nav_group1"
         android:checkableBehavior="single">
         <item
             android:id="@+id/user_nav_favorit"
@@ -16,6 +17,7 @@
             android:title="Riwayat" />
     </group>
     <group
+        android:id="@+id/user_nav_group2"
         android:checkableBehavior="single">
         <item
             android:id="@+id/user_nav_badminton"
@@ -27,9 +29,10 @@
             android:title="Futsal" />
     </group>
     <group
+        android:id="@+id/user_nav_group3"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/penyedia_nav_pengaturan"
+            android:id="@+id/user_nav_pengaturan"
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Pengaturan" />
     </group>
