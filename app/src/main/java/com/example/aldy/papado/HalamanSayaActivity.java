@@ -59,7 +59,7 @@ public class HalamanSayaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (HalamanSayaActivity.this, TambahlapActivity.class);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }
