@@ -74,6 +74,11 @@ public class PemesananActivity extends AppCompatActivity {
                 startActivity(jenislapangan);
                 finish();
                 break;
+            case R.id.penyedia_nav_jadwal:
+                Intent jadwal= new Intent(PemesananActivity.this, PenyediaJadwalActivity.class);
+                startActivity(jadwal);
+                finish();
+                break;
         }
     }
     @Override

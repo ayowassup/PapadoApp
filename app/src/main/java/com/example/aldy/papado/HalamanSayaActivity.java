@@ -86,6 +86,11 @@ public class HalamanSayaActivity extends AppCompatActivity {
                 startActivity(jenislapangan);
                 finish();
                 break;
+            case R.id.penyedia_nav_jadwal:
+                Intent jadwal= new Intent(HalamanSayaActivity.this, PenyediaJadwalActivity.class);
+                startActivity(jadwal);
+                finish();
+                break;
         }
     }
     @Override

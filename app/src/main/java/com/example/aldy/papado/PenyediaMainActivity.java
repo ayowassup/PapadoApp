@@ -76,6 +76,11 @@ public class PenyediaMainActivity extends AppCompatActivity {
                 startActivity(jenislapangan);
                 finish();
                 break;
+            case R.id.penyedia_nav_jadwal:
+                Intent jadwal= new Intent(PenyediaMainActivity.this, PenyediaJadwalActivity.class);
+                startActivity(jadwal);
+                finish();
+                break;
         }
     }
 
