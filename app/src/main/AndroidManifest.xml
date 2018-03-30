@@ -38,7 +38,8 @@
             android:name=".PengaturanActivity"
             android:label="Pengaturan" />
         <activity android:name=".TambahlapActivity" />
-        <activity android:name=".PenyediaJadwalActivity" />
+        <activity android:name=".PenyediaJadwalActivity"
+            android:label="Jadwal"/>
         <activity android:name=".PenyediaEditprofilActivity"></activity>
     </application>
 

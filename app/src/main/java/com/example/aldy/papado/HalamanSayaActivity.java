@@ -71,7 +71,7 @@ public class HalamanSayaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (HalamanSayaActivity.this, PenyediaEditprofilActivity.class);
                 startActivity(intent);
-                
+
             }
         });
     }
