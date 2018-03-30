@@ -42,7 +42,8 @@
             android:name=".PenyediaJadwalActivity"
             android:label="Jadwal" />
         <activity android:name=".PenyediaEditprofilActivity" />
-        <activity android:name=".PenyediaJadwalTambahActivity"></activity>
+        <activity android:name=".PenyediaJadwalTambahActivity" />
+        <activity android:name=".UserMainActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/user_nav_favorit"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Favorit Saya" />
+        <item
+            android:id="@+id/user_nav_pemesanan"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Pemesanan" />
+        <item
+            android:id="@+id/user_nav_riwayat"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Riwayat" />
+    </group>
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/user_nav_badminton"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Badminton" />
+        <item
+            android:id="@+id/user_nav_futsal"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Futsal" />
+    </group>
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/penyedia_nav_pengaturan"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="Pengaturan" />
+    </group>
+</menu>

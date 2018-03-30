@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private Button loginuser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +60,16 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 //kode kalau tombol daftar diklik
 
+            }
+        });
+
+        loginuser = findViewById(R.id.login_button_masuk_user);
+        loginuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, UserMainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

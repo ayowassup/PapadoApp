@@ -1,5 +1,6 @@
 package com.example.aldy.papado;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,9 @@ public class TambahlapActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //kalau simpan dipencet
+                Intent intent = new Intent(TambahlapActivity.this, HalamanSayaActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
