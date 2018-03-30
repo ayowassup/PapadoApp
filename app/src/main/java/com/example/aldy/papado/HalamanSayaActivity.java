@@ -10,12 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class HalamanSayaActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private LinearLayout tambah_lap;
+    private TextView editprofile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,16 @@ public class HalamanSayaActivity extends AppCompatActivity {
                 Intent intent = new Intent (HalamanSayaActivity.this, TambahlapActivity.class);
                 startActivity(intent);
 //                finish();
+            }
+        });
+
+        editprofile = findViewById(R.id.penyedia_profile_edit);
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (HalamanSayaActivity.this, PenyediaEditprofilActivity.class);
+                startActivity(intent);
+                
             }
         });
     }
