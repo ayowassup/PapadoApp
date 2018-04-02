@@ -43,8 +43,6 @@
             android:label="Jadwal" />
         <activity android:name=".PenyediaEditprofilActivity" />
         <activity android:name=".PenyediaJadwalTambahActivity" />
-        <activity android:name=".UserMainActivity"
-            android:label="User Main"/>
         <activity android:name=".UserFavoritActivity"
             android:label="User Favorit"/>
         <activity android:name=".UserPemesananActivity"

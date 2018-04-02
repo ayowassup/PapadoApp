@@ -87,7 +87,7 @@ public class UserRiwayatActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserRiwayatActivity.this,UserMainActivity.class);
+        Intent intent = new Intent(UserRiwayatActivity.this,UserPemesananActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

@@ -87,7 +87,7 @@ public class UserFavoritActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserFavoritActivity.this,UserMainActivity.class);
+        Intent intent = new Intent(UserFavoritActivity.this,UserPemesananActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();
