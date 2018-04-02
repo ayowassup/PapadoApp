@@ -88,7 +88,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/colorAccent"
-                        android:hint="Email" />
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"/>
 
                 </LinearLayout>
 
@@ -107,7 +108,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/colorAccent"
-                        android:hint="Telepon" />
+                        android:hint="Telepon"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
