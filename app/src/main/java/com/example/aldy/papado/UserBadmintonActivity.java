@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 public class UserBadmintonActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -39,6 +41,16 @@ public class UserBadmintonActivity extends AppCompatActivity {
                 mDrawerLayout.closeDrawers();
 
                 return true;
+            }
+        });
+
+        RelativeLayout pesan_badminton = findViewById(R.id.cobapesanbadminton);
+        pesan_badminton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserBadmintonActivity.this, UserTanggalActivity.class);
+                startActivity(intent);
+
             }
         });
 

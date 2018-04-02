@@ -43,18 +43,25 @@
             android:label="Jadwal" />
         <activity android:name=".PenyediaEditprofilActivity" />
         <activity android:name=".PenyediaJadwalTambahActivity" />
-        <activity android:name=".UserFavoritActivity"
-            android:label="User Favorit"/>
-        <activity android:name=".UserPemesananActivity"
-            android:label="User Pemesanan"/>
-        <activity android:name=".UserRiwayatActivity"
-            android:label="User Riwayat"/>
-        <activity android:name=".UserBadmintonActivity"
-            android:label="User Badminton"/>
-        <activity android:name=".UserFutsalActivity"
-            android:label="User Futsal"/>
-        <activity android:name=".UserPengaturanActivity"
-            android:label="User Pengaturan"></activity>
+        <activity
+            android:name=".UserFavoritActivity"
+            android:label="User Favorit" />
+        <activity
+            android:name=".UserPemesananActivity"
+            android:label="User Pemesanan" />
+        <activity
+            android:name=".UserRiwayatActivity"
+            android:label="User Riwayat" />
+        <activity
+            android:name=".UserBadmintonActivity"
+            android:label="User Badminton" />
+        <activity
+            android:name=".UserFutsalActivity"
+            android:label="User Futsal" />
+        <activity
+            android:name=".UserPengaturanActivity"
+            android:label="User Pengaturan" />
+        <activity android:name=".UserTanggalActivity"></activity>
     </application>
 
 </manifest>
