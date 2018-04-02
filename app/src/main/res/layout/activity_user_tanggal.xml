@@ -8,17 +8,23 @@
     android:orientation="vertical"
     tools:context="com.example.aldy.papado.UserTanggalActivity">
 
-    <EditText
-        android:id="@+id/user_tanggal_picker"
+    <TextView
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:id="@+id/waktu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="tanggal"
-        android:textColorHint="@color/colorPrimary" />
-
+        android:text="waktu"/>
     <Button
-        android:id="@+id/user_tanggal_simpan"
+        android:id="@+id/datepicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="simpan" />
+        android:text="date picker"/>
+    <Button
+        android:id="@+id/timepicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="time picker"/>
+
 
 </LinearLayout>
