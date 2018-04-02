@@ -46,9 +46,7 @@ public class UserFavoritActivity extends AppCompatActivity {
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.user_nav_favorit:
-                Intent favorit = new Intent(UserFavoritActivity.this, UserFavoritActivity.class);
-                startActivity(favorit);
-                finish();
+                mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_pemesanan:
                 Intent pemesanan = new Intent(UserFavoritActivity.this, UserPemesananActivity.class);

@@ -66,9 +66,7 @@ public class UserFutsalActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.user_nav_futsal:
-                Intent futsal= new Intent(UserFutsalActivity.this, UserFutsalActivity.class);
-                startActivity(futsal);
-                finish();
+                mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_pengaturan:
                 Intent pengaturan= new Intent(UserFutsalActivity.this, UserPengaturanActivity.class);

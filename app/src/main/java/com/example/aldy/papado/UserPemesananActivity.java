@@ -51,9 +51,7 @@ public class UserPemesananActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserPemesananActivity.this, UserPemesananActivity.class);
-                startActivity(pemesanan);
-                finish();
+                mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_riwayat:
                 Intent riwayat = new Intent(UserPemesananActivity.this, UserRiwayatActivity.class);

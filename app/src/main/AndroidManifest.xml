@@ -61,7 +61,8 @@
         <activity
             android:name=".UserPengaturanActivity"
             android:label="User Pengaturan" />
-        <activity android:name=".UserTanggalActivity"></activity>
+        <activity android:name=".UserTanggalActivity" />
+        <activity android:name=".UserPemesananListActivity"></activity>
     </application>
 
 </manifest>

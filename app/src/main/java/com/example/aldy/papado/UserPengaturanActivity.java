@@ -71,9 +71,7 @@ public class UserPengaturanActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.user_nav_pengaturan:
-                Intent pengaturan= new Intent(UserPengaturanActivity.this, UserPengaturanActivity.class);
-                startActivity(pengaturan);
-                finish();
+                mDrawerLayout.closeDrawers();
                 break;
         }
     }

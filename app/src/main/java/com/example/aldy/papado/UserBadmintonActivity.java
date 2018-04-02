@@ -48,7 +48,7 @@ public class UserBadmintonActivity extends AppCompatActivity {
         pesan_badminton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserBadmintonActivity.this, UserTanggalActivity.class);
+                Intent intent = new Intent(UserBadmintonActivity.this, UserPemesananListActivity.class);
                 startActivity(intent);
 
             }
@@ -73,9 +73,7 @@ public class UserBadmintonActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.user_nav_badminton:
-                Intent badminton = new Intent(UserBadmintonActivity.this, UserBadmintonActivity.class);
-                startActivity(badminton);
-                finish();
+                mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_futsal:
                 Intent futsal= new Intent(UserBadmintonActivity.this, UserFutsalActivity.class);
