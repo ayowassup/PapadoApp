@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         masuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, PenyediaMainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, UserMainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -63,15 +63,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginuser = findViewById(R.id.login_button_masuk_user);
-        loginuser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, UserMainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
 
