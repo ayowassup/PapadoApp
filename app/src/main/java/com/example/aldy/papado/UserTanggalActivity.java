@@ -1,5 +1,6 @@
 package com.example.aldy.papado;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -23,6 +25,7 @@ public class UserTanggalActivity extends AppCompatActivity {
     private Button bdate, btime;
     Calendar c = Calendar.getInstance();
     DateFormat dateFormat = DateFormat.getDateTimeInstance();
+    LinearLayout jadwal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,38 @@ public class UserTanggalActivity extends AppCompatActivity {
             }
         });
         updateTextLabel();
+
+        jadwal = findViewById(R.id.user_pilihjadwal);
+        jadwal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(UserTanggalActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.user_jadwal_dialog, null);
+                Button yes = mView.findViewById(R.id.user_jadwal_pesan_yes);
+                Button no = mView.findViewById(R.id.user_jadwal_pesan_no);
+
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //kalau tombol yes diklik
+                        dialog.dismiss();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //kalau tombol no diklik
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
+
     }
 
     public void updateDate(){
