@@ -9,8 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
+import android.text.method.CharacterPickerDialog;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<PenyediaListLapangan> listitem;
+    private LinearLayout tambahlap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,15 @@ public class PenyediaMainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
+        ///////
+        tambahlap = findViewById(R.id.penyedia_tambahlap);
+        tambahlap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PenyediaMainActivity.this, TambahlapActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void penyedia_pindahactivity (MenuItem menuItem){
