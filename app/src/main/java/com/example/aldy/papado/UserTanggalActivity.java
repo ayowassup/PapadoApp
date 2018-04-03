@@ -35,8 +35,8 @@ public class UserTanggalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_tanggal);
 
         waktu = findViewById(R.id.waktu);
-        bdate = findViewById(R.id.datepicker);
-        btime = findViewById(R.id.timepicker);
+        bdate = findViewById(R.id.user_pemesanan_datepicker);
+        btime = findViewById(R.id.user_pemesanan_timepicker);
 
         bdate.setOnClickListener(new View.OnClickListener() {
             @Override

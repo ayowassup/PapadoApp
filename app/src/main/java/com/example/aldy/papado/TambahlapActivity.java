@@ -18,7 +18,7 @@ public class TambahlapActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //kalau simpan dipencet
-                Intent intent = new Intent(TambahlapActivity.this, HalamanSayaActivity.class);
+                Intent intent = new Intent(TambahlapActivity.this, PenyediaMainActivity.class);
                 startActivity(intent);
                 finish();
             }
