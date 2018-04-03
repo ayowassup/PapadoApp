@@ -55,16 +55,6 @@ public class HalamanSayaActivity extends AppCompatActivity {
                     }
                 });
 
-        tambah_lap = findViewById(R.id.penyedia_tambahlap);
-        tambah_lap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (HalamanSayaActivity.this, TambahlapActivity.class);
-                startActivity(intent);
-//                finish();
-            }
-        });
-
         editprofile = findViewById(R.id.penyedia_profile_edit);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,16 +5,25 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PenyediaMainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<PenyediaListLapangan> listitem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,23 @@ public class PenyediaMainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+        recyclerView = findViewById(R.id.penyedia_recycler_list_lapangan);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //DUMMY DATA (BELUM NGAMBIL DARI SERVER)
+        listitem = new ArrayList<>();
+
+        for (int i = 0; i<100; i++){
+            PenyediaListLapangan listitems = new PenyediaListLapangan("namalap"+(i+1), "ukuranlap", "1000");
+            listitem.add(listitems);
+        }
+
+        adapter = new PenyediaListLapanganAdapter(listitem,this);
+
+        recyclerView.setAdapter(adapter);
 
     }
 

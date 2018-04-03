@@ -27,7 +27,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PenyediaMainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="Daftar lapangan"/>
         <activity
             android:name=".HalamanSayaActivity"
             android:label="Profil saya" />
