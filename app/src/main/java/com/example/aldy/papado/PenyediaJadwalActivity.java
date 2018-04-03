@@ -84,7 +84,7 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
         listitem = new ArrayList<>();
 
         for (int i = 0; i<20; i++){
-            PenyediaListJadwal listitems = new PenyediaListJadwal("01", "00", "02", "00");
+            PenyediaListJadwal listitems = new PenyediaListJadwal(i+":00", (i+1)+":00");
             listitem.add(listitems);
         }
 

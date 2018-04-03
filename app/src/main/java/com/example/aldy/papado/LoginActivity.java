@@ -11,9 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     private Button loginuser;
+    private EditText username;
+    private EditText pass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +46,21 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        username = findViewById(R.id.login_username_text);
+        pass = findViewById(R.id.login_password_text);
         Button masuk = findViewById(R.id.login_button_masuk);
         masuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, UserPemesananActivity.class);
-                startActivity(intent);
-                finish();
+                if (username.getText().toString().matches("") || pass.getText().toString().matches("")) {
+                    //ini kalau username kosong atau pass kosong
+                    Toast.makeText(LoginActivity.this, "Masukkan data dengan benar", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, UserPemesananActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 

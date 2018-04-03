@@ -6,7 +6,7 @@
         <item
             android:id="@+id/penyedia_nav_halamansaya"
             android:icon="@drawable/ic_account_circle_black_48dp"
-            android:title="Halaman Saya" />
+            android:title="Profil Saya" />
         <item
             android:id="@+id/penyedia_nav_pemesanan"
             android:icon="@drawable/ic_account_circle_black_48dp"
@@ -23,7 +23,7 @@
         <item
             android:id="@+id/penyedia_nav_jenislapangan"
             android:icon="@drawable/ic_account_circle_black_48dp"
-            android:title="Jenis Lapangan" />
+            android:title="Daftar Lapangan" />
     </group>
     <group
         android:id="@+id/penyedia_nav_logout"

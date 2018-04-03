@@ -10,11 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class PengaturanActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
+    private LinearLayout logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,15 @@ public class PengaturanActivity extends AppCompatActivity {
                     }
                 });
 
-
-
+        logout = findViewById(R.id.penyedia_logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PengaturanActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
