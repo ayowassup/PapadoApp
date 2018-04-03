@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -68,14 +70,18 @@ public class UserTanggalActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //kalau tombol yes diklik
-                        dialog.dismiss();
+//                        dialog.dismiss(); // ini method untuk menghilangkan alertdialog
+                        Toast.makeText(UserTanggalActivity.this, "yes", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(UserTanggalActivity.this, UserPemesananActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //kalau tombol no diklik
-                        dialog.dismiss();
+                        dialog.dismiss();// ini method untuk menghilangkan alertdialog
                     }
                 });
 
@@ -84,20 +90,20 @@ public class UserTanggalActivity extends AppCompatActivity {
 
     }
 
-    public void updateDate(){
+    public void updateDate() {
         new DatePickerDialog(this, d, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    public void updateTime(){
+    public void updateTime() {
         new TimePickerDialog(this, t, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
     }
 
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            c.set(Calendar.YEAR,i);
-            c.set(Calendar.MONTH,i1);
-            c.set(Calendar.DAY_OF_MONTH,i2);
+            c.set(Calendar.YEAR, i);
+            c.set(Calendar.MONTH, i1);
+            c.set(Calendar.DAY_OF_MONTH, i2);
             updateTextLabel();
         }
     };
@@ -111,7 +117,7 @@ public class UserTanggalActivity extends AppCompatActivity {
         }
     };
 
-    public void updateTextLabel(){
+    public void updateTextLabel() {
         //dia ngambil waktu sama tanggal lewat sini
         waktu.setText(dateFormat.format(c.getTime()));
     }
