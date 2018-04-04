@@ -1,15 +1,21 @@
 package com.example.aldy.papado;
+
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
+import android.widget.Toast;;
 import java.util.Map;
 import java.util.HashMap;
+import android.widget.TimePicker;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 //Firebase
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +33,18 @@ public class PenyediaJadwalTambahActivity extends AppCompatActivity {
     Intent penyediatambah;
     private DatabaseReference mDatabase;
     private FirebaseAuth auth;
+//    EditText jam1;
+//    EditText jam2;
+    Calendar c = Calendar.getInstance();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+    TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker timePicker, int i, int i1) {
+            c.set(Calendar.HOUR, i);
+            c.set(Calendar.MINUTE, i1);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +62,31 @@ public class PenyediaJadwalTambahActivity extends AppCompatActivity {
         inputJamAkhir = findViewById(R.id.penyedia_jadwal_tambah_jam2);
         penyediatambah = new Intent(PenyediaJadwalTambahActivity.this,PenyediaJadwalActivity.class);
 
+
+        inputJamAwal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputJamAwal.setText(dateFormat.format(c.getTime()));
+                updateTime();
+                jamAwal = inputJamAwal.getText().toString();
+            }
+        });
+        inputJamAkhir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputJamAkhir.setText(dateFormat.format(c.getTime()));
+                updateTime();
+                jamAkhir = inputJamAkhir.getText().toString();
+            }
+        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //Variabel
-                jamAwal = inputJamAwal.getText().toString();
-                jamAkhir = inputJamAkhir.getText().toString();
+//                jamAwal = inputJamAwal.getText().toString();
+//                jamAkhir = inputJamAkhir.getText().toString();
 
                 //Auth
                 auth = FirebaseAuth.getInstance();
@@ -70,7 +106,15 @@ public class PenyediaJadwalTambahActivity extends AppCompatActivity {
                         finish();
                     }
                 });
+                //kalau save diklik
+//                Intent intent = new Intent(PenyediaJadwalTambahActivity.this, PenyediaJadwalActivity.class);
+//                startActivity(intent);
+//                finish();
             }
         });
+
+    }
+    public void updateTime() {
+        new TimePickerDialog(this, t, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
     }
 }

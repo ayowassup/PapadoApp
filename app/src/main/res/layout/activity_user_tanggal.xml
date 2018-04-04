@@ -16,12 +16,12 @@
         android:layout_height="wrap_content"
         android:text="waktu"/>
     <Button
-        android:id="@+id/datepicker"
+        android:id="@+id/user_pemesanan_datepicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="date picker"/>
     <Button
-        android:id="@+id/timepicker"
+        android:id="@+id/user_pemesanan_timepicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="time picker"/>

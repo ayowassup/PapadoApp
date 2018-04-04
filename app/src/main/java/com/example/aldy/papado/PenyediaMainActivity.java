@@ -13,6 +13,7 @@ import android.text.method.CharacterPickerDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -27,7 +28,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<PenyediaListLapangan> listitem;
-    private LinearLayout tambahlap;
+    private Button tambahlap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
         //DUMMY DATA (BELUM NGAMBIL DARI SERVER)
         listitem = new ArrayList<>();
 
-        for (int i = 0; i<100; i++){
+        for (int i = 0; i<20; i++){
             PenyediaListLapangan listitems = new PenyediaListLapangan("namalap"+(i+1), "ukuranlap", "1000");
             listitem.add(listitems);
         }

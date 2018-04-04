@@ -17,6 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/penyedia_tambahlap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="tambah lapangan" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -34,29 +39,7 @@
                     >
 
                 </android.support.v7.widget.RecyclerView>
-
-                <LinearLayout
-                    android:id="@+id/penyedia_tambahlap"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_account_circle_black_48dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="Tambah baru" />
-                </LinearLayout>
             </LinearLayout>
-
-
         </ScrollView>
 
     </LinearLayout>

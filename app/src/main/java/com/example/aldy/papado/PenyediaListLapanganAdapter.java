@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class PenyediaListLapanganAdapter extends RecyclerView.Adapter<PenyediaLi
         TextView namalap;
         TextView ukuranlap;
         TextView hargalap;
+        LinearLayout linearLayout;
 
         public ViewHolder(View v){
             super(v);
@@ -36,7 +39,7 @@ public class PenyediaListLapanganAdapter extends RecyclerView.Adapter<PenyediaLi
             namalap = v.findViewById(R.id.penyedia_list_namalap);
             ukuranlap = v.findViewById(R.id.penyedia_list_ukuranlap);
             hargalap = v.findViewById(R.id.penyedia_list_hargalap);
-
+            linearLayout = v.findViewById(R.id.penyedia_clicklistener_list_lap);
         }
     }
 
@@ -48,12 +51,18 @@ public class PenyediaListLapanganAdapter extends RecyclerView.Adapter<PenyediaLi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        PenyediaListLapangan listItem = listitem.get(position);
+        final PenyediaListLapangan listItem = listitem.get(position);
 
         holder.namalap.setText(listItem.getNamalap());
         holder.hargalap.setText(listItem.getHargalap());
         holder.ukuranlap.setText(listItem.getUkuranlap());
-
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ambil data dari setiap listnya lewat "listItem" ditambah .getnamalap()/hargalap()/ukuranlap();
+                Toast.makeText(context, "you clicked "+listItem.getNamalap(),Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 

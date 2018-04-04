@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
 import android.widget.Toast;
 
 //Untuk akun
@@ -29,6 +30,7 @@ public class PengaturanActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
     private LinearLayout logout, delacc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,19 +74,6 @@ public class PengaturanActivity extends AppCompatActivity {
                     }
                 });
 
-//        authListener = new FirebaseAuth.AuthStateListener(){
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if (user!=null){
-//                    Toast.makeText(PengaturanActivity.this, "User ada", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//                    Toast.makeText(PengaturanActivity.this, "User belum masuk", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
         logout = findViewById(R.id.penyedia_logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +100,10 @@ public class PengaturanActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                Intent intent = new Intent(PengaturanActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+
             }
         });
     }
