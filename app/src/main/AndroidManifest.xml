@@ -62,7 +62,7 @@
         <activity
             android:name=".UserPengaturanActivity"
             android:label="User Pengaturan" />
-        <activity android:name=".UserTanggalActivity" />
+        <activity android:name=".UserPemesananJadwalActivity" />
         <activity android:name=".UserPemesananLapanganActivity" />
         <activity android:name=".UserEditProfilActivity"></activity>
     </application>

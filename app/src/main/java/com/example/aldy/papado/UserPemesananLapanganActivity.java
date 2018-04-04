@@ -16,7 +16,7 @@ public class UserPemesananLapanganActivity extends AppCompatActivity {
         pilihlap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (UserPemesananLapanganActivity.this, UserTanggalActivity.class);
+                Intent intent = new Intent (UserPemesananLapanganActivity.this, UserPemesananJadwalActivity.class);
                 startActivity(intent);
             }
         });
