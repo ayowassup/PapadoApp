@@ -16,7 +16,7 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //kalau save diklik
+
                 Intent intent = new Intent(PenyediaEditprofilActivity.this, HalamanSayaActivity.class);
                 startActivity(intent);
                 finish();

@@ -1,6 +1,7 @@
 package com.example.aldy.papado;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,17 +11,52 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
+import android.text.TextUtils;
+import android.widget.EditText;
+import java.util.Map;
+import java.util.HashMap;
+
+//Tentang register
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class DaftarActivity extends AppCompatActivity {
 
     static final String jenis_user[] = {"Penyewa", "P. Badminton", "P. Futsal", "P. Renang"};
+    private EditText inputUsername, inputPassword, inputEmail, inputAddress, inputPhone, namaTempat, pilihan;
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
+    private Button daftar;
+    public String email, username, pass, address, phone, tempat, kategori;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
 
-        Spinner spinner = findViewById(R.id.spinner_jenisuser);
+        //Otentikasi
+        auth = FirebaseAuth.getInstance();
+
+        //Instance db
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //Variabel
+        daftar = findViewById(R.id.daftar_button_daftar);
+        inputUsername = findViewById(R.id.daftar_username_text);
+        inputEmail = findViewById(R.id.daftar_email_text);
+        inputPassword = findViewById(R.id.daftar_password_text);
+        inputAddress = findViewById(R.id.daftar_alamat);
+        inputPhone = findViewById(R.id.daftar_telepon_text);
+        namaTempat = findViewById(R.id.daftar_namatempat_text);
+        spinner = findViewById(R.id.spinner_jenisuser);
+
         ArrayAdapter<String> adapter = new ArrayAdapter(DaftarActivity.this, R.layout.spinner_item, jenis_user);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -44,14 +80,71 @@ public class DaftarActivity extends AppCompatActivity {
             }
         });
 
-        Button daftar = findViewById(R.id.daftar_button_daftar);
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DaftarActivity.this,PenyediaMainActivity.class);
-                startActivity(intent);
-                finish();
-                //kode kalau tombol daftar diklik
+                final Intent intent = new Intent(DaftarActivity.this,PenyediaMainActivity.class);
+
+                email = inputEmail.getText().toString();
+                username = inputUsername.getText().toString();
+                pass = inputPassword.getText().toString();
+                phone = inputPhone.getText().toString();
+                address = inputAddress.getText().toString();
+                tempat = namaTempat.getText().toString();
+                kategori = spinner.getSelectedItem().toString();
+
+
+                if (TextUtils.isEmpty(username)) {
+                    Toast.makeText(getApplicationContext(), "Masukkan alamat email!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(pass)) {
+                    Toast.makeText(getApplicationContext(), "Harap masukkan password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (pass.length() < 6) {
+                    Toast.makeText(getApplicationContext(), "Password terlalu pendek, minimum 6 karakter", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                auth.createUserWithEmailAndPassword(email, pass)
+                        .addOnCompleteListener(DaftarActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (!task.isSuccessful()) {
+                                            Toast.makeText(DaftarActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                        auth = FirebaseAuth.getInstance();
+                                        FirebaseUser user = auth.getCurrentUser();
+                                        String uid = user.getUid();
+                                        String key = mDatabase.push().getKey();
+                                        //Toast.makeText(DaftarActivity.this, "UID"+uid, Toast.LENGTH_SHORT).show();
+                                        Map<String, Object> akun = new HashMap<String, Object>();
+                                        akun.put("/users/" + uid + "/username", username);
+                                        akun.put("/users/" + uid + "/password", pass);
+                                        akun.put("/users/" + uid + "/address", address);
+                                        akun.put("/users/" + uid + "/kategori", kategori);
+                                        akun.put("/users/" + uid + "/telepon", phone);
+
+                                        if (!kategori.equalsIgnoreCase("Penyewa")) {
+                                            akun.put("/penyedia/" + key + "/userId", uid);
+                                            akun.put("/penyedia/" + key + "/kategori", kategori);
+                                            akun.put("/lapangan/" + uid + "/namaTempat", tempat);
+                                        }
+
+                                        mDatabase.updateChildren(akun).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(DaftarActivity.this, "Berhasil mendaftar akun", Toast.LENGTH_SHORT).show();
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        });
+                                    }
+                        });
             }
         });
     }
