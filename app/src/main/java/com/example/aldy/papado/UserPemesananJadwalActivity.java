@@ -6,6 +6,9 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -16,7 +19,9 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class UserPemesananJadwalActivity extends AppCompatActivity {
     private TextView waktu;
@@ -25,6 +30,11 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
 //    DateFormat dateFormat = DateFormat.getDateTimeInstance();
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     LinearLayout jadwal;
+
+    /////
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<UserListJadwal> listJadwals = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +95,20 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
             }
         });
 
+        /////
+        recyclerView = findViewById(R.id.user_recycler_list_jadwal);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+
+        //DUMMY DATA
+        for (int i = 0; i<20; i++){
+            UserListJadwal listitems = new UserListJadwal(i+":00", (i+1)+":00");
+            listJadwals.add(listitems);
+        }
+
+        adapter = new UserListJadwalAdapter(listJadwals, this);
+        recyclerView.setAdapter(adapter);
     }
 
     public void updateDate() {
