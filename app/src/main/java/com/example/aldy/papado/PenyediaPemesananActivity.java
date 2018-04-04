@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,7 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.penyedia_nav_halamansaya:
-                Intent halamansaya = new Intent(PenyediaPemesananActivity.this, HalamanSayaActivity.class);
+                Intent halamansaya = new Intent(PenyediaPemesananActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
                 break;

@@ -94,7 +94,7 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.penyedia_nav_halamansaya:
-                Intent halamansaya = new Intent(PenyediaJadwalActivity.this, HalamanSayaActivity.class);
+                Intent halamansaya = new Intent(PenyediaJadwalActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
                 break;

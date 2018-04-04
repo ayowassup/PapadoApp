@@ -30,7 +30,7 @@
             android:label="Daftar lapangan"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HalamanSayaActivity"
+            android:name=".PenyediaProfilActivity"
             android:label="Profil saya" />
         <activity
             android:name=".PenyediaPemesananActivity"
