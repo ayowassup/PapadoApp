@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class UserTanggalActivity extends AppCompatActivity {
+public class UserPemesananJadwalActivity extends AppCompatActivity {
     private TextView waktu;
     private Button bdate, btime;
     Calendar c = Calendar.getInstance();
@@ -27,7 +27,7 @@ public class UserTanggalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_tanggal);
+        setContentView(R.layout.activity_user_pemesanan_jadwal);
 
         waktu = findViewById(R.id.waktu);
         bdate = findViewById(R.id.user_pemesanan_datepicker);
@@ -52,7 +52,7 @@ public class UserTanggalActivity extends AppCompatActivity {
         jadwal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(UserTanggalActivity.this);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(UserPemesananJadwalActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.user_jadwal_dialog, null);
                 Button yes = mView.findViewById(R.id.user_jadwal_pesan_yes);
                 Button no = mView.findViewById(R.id.user_jadwal_pesan_no);
@@ -66,8 +66,8 @@ public class UserTanggalActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         //kalau tombol yes diklik
 //                        dialog.dismiss(); // ini method untuk menghilangkan alertdialog
-                        Toast.makeText(UserTanggalActivity.this, "yes", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UserTanggalActivity.this, UserPemesananVenueActivity.class);
+                        Toast.makeText(UserPemesananJadwalActivity.this, "yes", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(UserPemesananJadwalActivity.this, UserPemesananVenueActivity.class);
                         startActivity(intent);
                         finish();
                     }
