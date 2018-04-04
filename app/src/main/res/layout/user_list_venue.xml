@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/user_pesan_namalap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ini nama lapangan" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/user_pesan_tanggal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ini tanggal pesan" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/user_pesan_jam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ini jam pesan" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/user_pesan_notelp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ini notelp penyedia" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/user_pesan_namapenyedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ini nama penyedia" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/user_pesan_keterangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ini keterangan udah disetuijui apa enggak" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

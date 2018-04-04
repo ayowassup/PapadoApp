@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class UserProfilActivity extends AppCompatActivity {
@@ -62,7 +61,7 @@ public class UserProfilActivity extends AppCompatActivity {
                 mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserProfilActivity.this, UserPemesananActivity.class);
+                Intent pemesanan = new Intent(UserProfilActivity.this, UserPemesananVenueActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
@@ -98,7 +97,7 @@ public class UserProfilActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserProfilActivity.this,UserPemesananActivity.class);
+        Intent intent = new Intent(UserProfilActivity.this,UserPemesananVenueActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

@@ -3,24 +3,19 @@ package com.example.aldy.papado;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class UserTanggalActivity extends AppCompatActivity {
     private TextView waktu;
@@ -72,7 +67,7 @@ public class UserTanggalActivity extends AppCompatActivity {
                         //kalau tombol yes diklik
 //                        dialog.dismiss(); // ini method untuk menghilangkan alertdialog
                         Toast.makeText(UserTanggalActivity.this, "yes", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UserTanggalActivity.this, UserPemesananActivity.class);
+                        Intent intent = new Intent(UserTanggalActivity.this, UserPemesananVenueActivity.class);
                         startActivity(intent);
                         finish();
                     }

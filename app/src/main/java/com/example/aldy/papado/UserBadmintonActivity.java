@@ -48,7 +48,7 @@ public class UserBadmintonActivity extends AppCompatActivity {
         pesan_badminton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserBadmintonActivity.this, UserPemesananListActivity.class);
+                Intent intent = new Intent(UserBadmintonActivity.this, UserPemesananLapanganActivity.class);
                 startActivity(intent);
 
             }
@@ -63,7 +63,7 @@ public class UserBadmintonActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserBadmintonActivity.this, UserPemesananActivity.class);
+                Intent pemesanan = new Intent(UserBadmintonActivity.this, UserPemesananVenueActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
@@ -97,7 +97,7 @@ public class UserBadmintonActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserBadmintonActivity.this,UserPemesananActivity.class);
+        Intent intent = new Intent(UserBadmintonActivity.this,UserPemesananVenueActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

@@ -48,7 +48,7 @@
             android:name=".UserProfilActivity"
             android:label="User Profil" />
         <activity
-            android:name=".UserPemesananActivity"
+            android:name=".UserPemesananVenueActivity"
             android:label="User Pemesanan" />
         <activity
             android:name=".UserRiwayatActivity"
@@ -63,7 +63,7 @@
             android:name=".UserPengaturanActivity"
             android:label="User Pengaturan" />
         <activity android:name=".UserTanggalActivity" />
-        <activity android:name=".UserPemesananListActivity" />
+        <activity android:name=".UserPemesananLapanganActivity" />
         <activity android:name=".UserEditProfilActivity"></activity>
     </application>
 
