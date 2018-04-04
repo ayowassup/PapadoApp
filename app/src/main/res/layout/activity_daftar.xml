@@ -48,6 +48,7 @@
                         android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <Spinner
+                        android:layout_marginLeft="-12dp"
                         android:id="@+id/spinner_jenisuser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

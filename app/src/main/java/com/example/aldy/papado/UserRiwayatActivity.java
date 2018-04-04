@@ -45,8 +45,8 @@ public class UserRiwayatActivity extends AppCompatActivity {
     }
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.user_nav_favorit:
-                Intent favorit = new Intent(UserRiwayatActivity.this, UserFavoritActivity.class);
+            case R.id.user_nav_profil:
+                Intent favorit = new Intent(UserRiwayatActivity.this, UserProfilActivity.class);
                 startActivity(favorit);
                 finish();
                 break;

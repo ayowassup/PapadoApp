@@ -3,7 +3,6 @@ package com.example.aldy.papado;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 
 public class DaftarActivity extends AppCompatActivity {
 
-    static final String jenis_user[] = {"Penyewa", "P. Badminton", "P. Futsal", "P. Renang"};
+    static final String jenis_user[] = {"Penyewa", "P. Badminton", "P. Futsal"};
     EditText username, email, telepon, alamat, pass, repass;
     EditText namatempat;
     CheckBox checkBox;
@@ -38,11 +37,16 @@ public class DaftarActivity extends AppCompatActivity {
                 // Kalau ada yang dipilih. Bisa dipanggil pake
                 //adapterView.getItemAtPosition(i)
                 LinearLayout a = findViewById(R.id.daftar_namatempat_text_hidden);
+                LinearLayout b = findViewById(R.id.daftar_alamat_text_hidden);
                 if (adapterView.getItemAtPosition(i) != "Penyewa") {
                     a.setVisibility(View.VISIBLE);
+                    b.setVisibility(View.VISIBLE);
+
                     user = false;
                 } else {
                     a.setVisibility(View.GONE);
+                    b.setVisibility(View.GONE);
+
                     user = true;
                 }
             }
@@ -71,23 +75,23 @@ public class DaftarActivity extends AppCompatActivity {
                     if (username.getText().toString().matches("")
                             || email.getText().toString().matches("")
                             || telepon.getText().toString().matches("")
-                            || alamat.getText().toString().matches("")
                             || pass.getText().toString().matches("")
                             || repass.getText().toString().matches("")
                             || !checkBox.isChecked()) {
                         Toast.makeText(DaftarActivity.this, "Data tidak lengkap", Toast.LENGTH_LONG).show();
                     } else {
                         if (user){
-                            Intent intent = new Intent(DaftarActivity.this, PenyediaMainActivity.class);
+                            Intent intent = new Intent(DaftarActivity.this, PenyediaDaftarLapanganActivity.class);
                             startActivity(intent);
                             finish();
                         }
                         else {
-                            if (namatempat.getText().toString().matches("")){
+                            if (namatempat.getText().toString().matches("")
+                                    || alamat.getText().toString().matches("")){
                                 Toast.makeText(DaftarActivity.this, "Data tidak lengkap", Toast.LENGTH_LONG).show();
                             }
                             else {
-                                Intent intent = new Intent(DaftarActivity.this, PenyediaMainActivity.class);
+                                Intent intent = new Intent(DaftarActivity.this, PenyediaDaftarLapanganActivity.class);
                                 startActivity(intent);
                                 finish();
                             }

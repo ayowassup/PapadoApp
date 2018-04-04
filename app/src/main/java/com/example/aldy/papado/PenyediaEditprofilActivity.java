@@ -12,7 +12,7 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penyedia_editprofil);
-        save = findViewById(R.id.penyedia_save_edit);
+        save = findViewById(R.id.penyedia_save_editprofile);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

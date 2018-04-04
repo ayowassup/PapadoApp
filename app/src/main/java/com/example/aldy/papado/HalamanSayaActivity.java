@@ -22,7 +22,7 @@ public class HalamanSayaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_halaman_saya);
+        setContentView(R.layout.activity_penyedia_profil);
 
         mToolbar = findViewById(R.id.penyedia_nav_action);
         setSupportActionBar(mToolbar);
@@ -74,17 +74,17 @@ public class HalamanSayaActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(HalamanSayaActivity.this, PemesananActivity.class);
+                Intent pemesanan = new Intent(HalamanSayaActivity.this, PenyediaPemesananActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
-                Intent pengaturan = new Intent(HalamanSayaActivity.this, PengaturanActivity.class);
+                Intent pengaturan = new Intent(HalamanSayaActivity.this, PenyediaPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;
             case R.id.penyedia_nav_jenislapangan:
-                Intent jenislapangan = new Intent(HalamanSayaActivity.this, PenyediaMainActivity.class);
+                Intent jenislapangan = new Intent(HalamanSayaActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
                 finish();
                 break;
@@ -104,7 +104,7 @@ public class HalamanSayaActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent jenislapangan = new Intent(HalamanSayaActivity.this, PenyediaMainActivity.class);
+        Intent jenislapangan = new Intent(HalamanSayaActivity.this, PenyediaDaftarLapanganActivity.class);
         startActivity(jenislapangan);
         finish();
 //        super.onBackPressed();

@@ -57,8 +57,8 @@ public class UserPengaturanActivity extends AppCompatActivity {
     }
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.user_nav_favorit:
-                Intent favorit = new Intent(UserPengaturanActivity.this, UserFavoritActivity.class);
+            case R.id.user_nav_profil:
+                Intent favorit = new Intent(UserPengaturanActivity.this, UserProfilActivity.class);
                 startActivity(favorit);
                 finish();
                 break;

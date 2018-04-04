@@ -26,27 +26,27 @@
             android:name=".DaftarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PenyediaMainActivity"
-            android:screenOrientation="portrait"
-            android:label="Daftar lapangan"/>
+            android:name=".PenyediaDaftarLapanganActivity"
+            android:label="Daftar lapangan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HalamanSayaActivity"
             android:label="Profil saya" />
         <activity
-            android:name=".PemesananActivity"
+            android:name=".PenyediaPemesananActivity"
             android:label="Pemesanan" />
         <activity
-            android:name=".PengaturanActivity"
+            android:name=".PenyediaPengaturanActivity"
             android:label="Pengaturan" />
-        <activity android:name=".TambahlapActivity" />
+        <activity android:name=".PenyediaTambahlapActivity" />
         <activity
             android:name=".PenyediaJadwalActivity"
             android:label="Jadwal" />
         <activity android:name=".PenyediaEditprofilActivity" />
         <activity android:name=".PenyediaJadwalTambahActivity" />
         <activity
-            android:name=".UserFavoritActivity"
-            android:label="User Favorit" />
+            android:name=".UserProfilActivity"
+            android:label="User Profil" />
         <activity
             android:name=".UserPemesananActivity"
             android:label="User Pemesanan" />
@@ -63,7 +63,8 @@
             android:name=".UserPengaturanActivity"
             android:label="User Pengaturan" />
         <activity android:name=".UserTanggalActivity" />
-        <activity android:name=".UserPemesananListActivity"></activity>
+        <activity android:name=".UserPemesananListActivity" />
+        <activity android:name=".UserEditProfilActivity"></activity>
     </application>
 
 </manifest>
