@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -20,41 +19,16 @@
             android:text="PILIH LAPANGAN"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/user_recycler_list_lapangan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/user_pilihlap"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:gravity="center_vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Nama lapangan"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ini ukuran" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ini harga"
-                android:textSize="20sp" />
-        </LinearLayout>
-    </ScrollView>
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

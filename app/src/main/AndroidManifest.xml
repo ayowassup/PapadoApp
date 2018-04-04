@@ -48,7 +48,7 @@
             android:name=".UserProfilActivity"
             android:label="User Profil" />
         <activity
-            android:name=".UserPemesananVenueActivity"
+            android:name=".UserNotifActivity"
             android:label="User Pemesanan" />
         <activity
             android:name=".UserRiwayatActivity"

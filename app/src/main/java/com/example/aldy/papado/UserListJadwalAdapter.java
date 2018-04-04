@@ -23,6 +23,18 @@ public class UserListJadwalAdapter extends RecyclerView.Adapter<UserListJadwalAd
     private List<UserListJadwal> listJadwals;
     private Context context;
 
+    ////// untuk inflater
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+    //////
+
     public UserListJadwalAdapter(List<UserListJadwal> listJadwals, Context context) {
         this.listJadwals = listJadwals;
         this.context = context;
@@ -31,22 +43,32 @@ public class UserListJadwalAdapter extends RecyclerView.Adapter<UserListJadwalAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView jam1;
         TextView jam2;
-        LinearLayout linearLayout;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v, final OnItemClickListener listener) {
             super(v);
 
             jam1 = v.findViewById(R.id.user_list_jamjadwal1);
             jam2 = v.findViewById(R.id.user_list_jamjadwal2);
-            linearLayout = v.findViewById(R.id.user_clicklistener_list_jadwal);
 
+            /////
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position!=RecyclerView.NO_POSITION){
+                        listener.onItemClick(position);
+                    }
+                }
+            });
+            /////
         }
     }
 
     @Override
     public UserListJadwalAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list_jadwal, parent, false);
-        return new ViewHolder(v);
+        return new ViewHolder(v, mListener);
+
     }
 
     @Override
@@ -55,13 +77,6 @@ public class UserListJadwalAdapter extends RecyclerView.Adapter<UserListJadwalAd
 
         holder.jam1.setText(listJadwal.getJam1());
         holder.jam2.setText(listJadwal.getJam2());
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kalau per item diklik ambil data peritem lewat listJadwal.getjam1() atau getjam2()
-                Toast.makeText(context, "you clicked "+listJadwal.getJam1()+" - "+listJadwal.getJam2(),Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override

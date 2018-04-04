@@ -15,18 +15,18 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserPemesananVenueActivity extends AppCompatActivity {
+public class UserNotifActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<UserListVenue> listVenues;
+    private List<UserListNotif> listVenues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_pemesanan_venue);
+        setContentView(R.layout.activity_user_notif);
 
         mToolbar = findViewById(R.id.user_nav_action);
         setSupportActionBar(mToolbar);
@@ -52,7 +52,7 @@ public class UserPemesananVenueActivity extends AppCompatActivity {
         });
 
         ////
-        recyclerView = findViewById(R.id.user_recycler_list_venue);
+        recyclerView = findViewById(R.id.user_recycler_list_notif);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,18 +61,18 @@ public class UserPemesananVenueActivity extends AppCompatActivity {
         listVenues = new ArrayList<>();
 
         for (int i = 0; i<20; i++) {
-            UserListVenue listVenue = new UserListVenue("nama lap aduh "+i,"23-23-2323", "11:00 - 12:00", "081034194234", "aldy","belum di acc");
+            UserListNotif listVenue = new UserListNotif("nama lap aduh "+i,"23-23-2323", "11:00 - 12:00", "081034194234", "aldy","belum di acc");
             listVenues.add(listVenue);
         }
 
-        adapter = new UserListVenueAdapter(listVenues, this);
+        adapter = new UserListNotifAdapter(listVenues, this);
         recyclerView.setAdapter(adapter);
 
         }
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.user_nav_profil:
-                Intent favorit = new Intent(UserPemesananVenueActivity.this, UserProfilActivity.class);
+                Intent favorit = new Intent(UserNotifActivity.this, UserProfilActivity.class);
                 startActivity(favorit);
                 finish();
                 break;
@@ -80,22 +80,22 @@ public class UserPemesananVenueActivity extends AppCompatActivity {
                 mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_riwayat:
-                Intent riwayat = new Intent(UserPemesananVenueActivity.this, UserRiwayatActivity.class);
+                Intent riwayat = new Intent(UserNotifActivity.this, UserRiwayatActivity.class);
                 startActivity(riwayat);
                 finish();
                 break;
             case R.id.user_nav_badminton:
-                Intent badminton = new Intent(UserPemesananVenueActivity.this, UserBadmintonActivity.class);
+                Intent badminton = new Intent(UserNotifActivity.this, UserBadmintonActivity.class);
                 startActivity(badminton);
                 finish();
                 break;
             case R.id.user_nav_futsal:
-                Intent futsal= new Intent(UserPemesananVenueActivity.this, UserFutsalActivity.class);
+                Intent futsal= new Intent(UserNotifActivity.this, UserFutsalActivity.class);
                 startActivity(futsal);
                 finish();
                 break;
             case R.id.user_nav_pengaturan:
-                Intent pengaturan= new Intent(UserPemesananVenueActivity.this, UserPengaturanActivity.class);
+                Intent pengaturan= new Intent(UserNotifActivity.this, UserPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;

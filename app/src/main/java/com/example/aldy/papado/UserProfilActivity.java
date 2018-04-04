@@ -66,7 +66,7 @@ public class UserProfilActivity extends AppCompatActivity {
                 mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserProfilActivity.this, UserPemesananVenueActivity.class);
+                Intent pemesanan = new Intent(UserProfilActivity.this, UserNotifActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
@@ -102,7 +102,7 @@ public class UserProfilActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserProfilActivity.this,UserPemesananVenueActivity.class);
+        Intent intent = new Intent(UserProfilActivity.this,UserNotifActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

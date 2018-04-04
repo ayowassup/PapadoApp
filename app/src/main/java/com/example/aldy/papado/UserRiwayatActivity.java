@@ -51,7 +51,7 @@ public class UserRiwayatActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserRiwayatActivity.this, UserPemesananVenueActivity.class);
+                Intent pemesanan = new Intent(UserRiwayatActivity.this, UserNotifActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
@@ -85,7 +85,7 @@ public class UserRiwayatActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserRiwayatActivity.this,UserPemesananVenueActivity.class);
+        Intent intent = new Intent(UserRiwayatActivity.this,UserNotifActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

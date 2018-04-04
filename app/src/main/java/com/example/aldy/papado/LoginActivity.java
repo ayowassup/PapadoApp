@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                     //ini kalau username kosong atau pass kosong
                     Toast.makeText(LoginActivity.this, "Masukkan data dengan benar", Toast.LENGTH_LONG).show();
                 } else {
-                    Intent intent = new Intent(LoginActivity.this, UserPemesananVenueActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, UserNotifActivity.class);
                     startActivity(intent);
                     finish();
                 }

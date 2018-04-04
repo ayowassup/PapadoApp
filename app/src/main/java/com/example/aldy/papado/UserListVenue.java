@@ -1,42 +1,22 @@
 package com.example.aldy.papado;
 
 /**
- * Created by DBSS014 on 4/4/2018.
+ * Created by DBSS014 on 4/5/2018.
  */
 
 public class UserListVenue {
-    String namalap, tanggalpesan, jampesan, notelp, namapenyedia, keterangan;
+    String namavenue, alamatvenue;
 
-    public UserListVenue(String namalap, String tanggalpesan, String jampesan, String notelp, String namapenyedia, String keterangan) {
-        this.namalap = namalap;
-        this.tanggalpesan = tanggalpesan;
-        this.jampesan = jampesan;
-        this.notelp = notelp;
-        this.namapenyedia = namapenyedia;
-        this.keterangan = keterangan;
+    public UserListVenue(String namavenue, String alamatvenue) {
+        this.namavenue = namavenue;
+        this.alamatvenue = alamatvenue;
     }
 
-    public String getNamalap() {
-        return namalap;
+    public String getNamavenue() {
+        return namavenue;
     }
 
-    public String getTanggalpesan() {
-        return tanggalpesan;
-    }
-
-    public String getJampesan() {
-        return jampesan;
-    }
-
-    public String getNotelp() {
-        return notelp;
-    }
-
-    public String getNamapenyedia() {
-        return namapenyedia;
-    }
-
-    public String getKeterangan() {
-        return keterangan;
+    public String getAlamatvenue() {
+        return alamatvenue;
     }
 }
