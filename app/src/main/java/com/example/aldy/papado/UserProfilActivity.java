@@ -45,6 +45,11 @@ public class UserProfilActivity extends AppCompatActivity {
             }
         });
 
+//        ini kalau mau rubah nama di headernya
+//        View hview = navigationView.getHeaderView(0);
+//        TextView headercoba = hview.findViewById(R.id.user_nav_header_text1);
+//        headercoba.setText("aldjflaksjdfklasjdflkalskdfj");
+
         /////
         editprofile = findViewById(R.id.user_profile_edit);
         editprofile.setOnClickListener(new View.OnClickListener() {

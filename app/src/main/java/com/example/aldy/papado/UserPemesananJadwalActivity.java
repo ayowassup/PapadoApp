@@ -15,13 +15,15 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class UserPemesananJadwalActivity extends AppCompatActivity {
     private TextView waktu;
     private Button bdate, btime;
     Calendar c = Calendar.getInstance();
-    DateFormat dateFormat = DateFormat.getDateTimeInstance();
+//    DateFormat dateFormat = DateFormat.getDateTimeInstance();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     LinearLayout jadwal;
 
     @Override
@@ -31,7 +33,7 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
 
         waktu = findViewById(R.id.waktu);
         bdate = findViewById(R.id.user_pemesanan_datepicker);
-        btime = findViewById(R.id.user_pemesanan_timepicker);
+//        btime = findViewById(R.id.user_pemesanan_timepicker);
 
         bdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,12 +42,12 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
             }
         });
 
-        btime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateTime();
-            }
-        });
+//        btime.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                updateTime();
+//            }
+//        });
         updateTextLabel();
 
         jadwal = findViewById(R.id.user_pilihjadwal);
@@ -89,9 +91,9 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
         new DatePickerDialog(this, d, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    public void updateTime() {
-        new TimePickerDialog(this, t, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
-    }
+//    public void updateTime() {
+//        new TimePickerDialog(this, t, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
+//    }
 
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -103,14 +105,14 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
         }
     };
 
-    TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker timePicker, int i, int i1) {
-            c.set(Calendar.HOUR, i);
-            c.set(Calendar.MINUTE, i1);
-            updateTextLabel();
-        }
-    };
+//    TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
+//        @Override
+//        public void onTimeSet(TimePicker timePicker, int i, int i1) {
+//            c.set(Calendar.HOUR, i);
+//            c.set(Calendar.MINUTE, i1);
+//            updateTextLabel();
+//        }
+//    };
 
     public void updateTextLabel() {
         //dia ngambil waktu sama tanggal lewat sini
