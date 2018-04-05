@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -62,12 +63,14 @@ public class PenyediaListPemesananAdapter extends RecyclerView.Adapter<PenyediaL
             @Override
             public void onClick(View view) {
                 //kalau tolak
+                Toast.makeText(context, "Pesanan ditolak", Toast.LENGTH_SHORT).show();
             }
         });
         holder.yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //kalau terima
+                Toast.makeText(context, "Pesanan diterima", Toast.LENGTH_SHORT).show();
             }
         });
     }
