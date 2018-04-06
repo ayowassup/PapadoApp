@@ -18,8 +18,12 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PenyediaJadwalActivity extends AppCompatActivity {
 
@@ -27,9 +31,11 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private Button tambah;
-    private DatabaseReference mDatabase;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
+    private DatabaseReference mRef;
     private List<PenyediaListJadwal> listitem;
 
     @Override
@@ -37,7 +43,13 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Database
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference();
+        mRef.keepSynced(true);
+
+        //auth
+        mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
 
         setContentView(R.layout.activity_penyedia_jadwal);
         mToolbar = findViewById(R.id.penyedia_nav_action);
@@ -56,17 +68,8 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                         set item as selected to persist highlight
-//                        menuItem.setChecked(true);
-
                         penyedia_pindahactivity(menuItem);
-
-                        // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
                         return true;
                     }
                 });
@@ -85,19 +88,40 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.penyedia_recycler_list_jadwal);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
-        //DUMMY DATA (BELUM NGAMBIL DARI SERVER)
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(layoutManager);
+
         listitem = new ArrayList<>();
+        mRef.child("jadwal").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String jamAwal = postSnapshot.child("jamAwal").getValue(String.class);
+                    String jamAkhir = postSnapshot.child("jamAkhir").getValue(String.class);
+                    listitem.add(new PenyediaListJadwal(jamAwal, jamAkhir));
+                }
+                adapter = new PenyediaListJadwalAdapter(listitem, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
 
-        for (int i = 0; i<20; i++){
-            PenyediaListJadwal listitems = new PenyediaListJadwal(i+":00", (i+1)+":00");
-            listitem.add(listitems);
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        adapter = new PenyediaListJadwalAdapter(listitem,this);
+            }
+        });
 
-        recyclerView.setAdapter(adapter);
+////        //DUMMY DATA (BELUM NGAMBIL DARI SERVER)
+////
+////        for (int i = 0; i<20; i++){
+////            PenyediaListJadwal listitems = new PenyediaListJadwal(i+":00", (i+1)+":00");
+////            listitem.add(listitems);
+////        }
+//
+//        adapter = new PenyediaListJadwalAdapter(listitem,this);
+//
+//        recyclerView.setAdapter(adapter);
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {

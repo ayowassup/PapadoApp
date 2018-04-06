@@ -11,18 +11,46 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HalamanSayaActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private LinearLayout tambah_lap;
-    private TextView editprofile;
+    private TextView header, editprofile, alamatPenyedia, namaVenue, namaPemilik,jamBukaTutup,telpPenyedia;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+    private FirebaseUser user;
+    private View view;
+    private String alamat, telepon, jam, pemilik, penyedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_saya);
+
+        namaVenue = findViewById(R.id.penyedia_profile_nama);
+        namaPemilik = findViewById(R.id.penyedia_profile_ownername);
+        telpPenyedia = findViewById(R.id.penyedia_profile_notelp);
+        alamatPenyedia = findViewById(R.id.penyedia_profile_alamat);
+        jamBukaTutup = findViewById(R.id.penyedia_profile_jam);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("penyedia");
+
+        user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+//        Toast.makeText(this, "uid"+uid, Toast.LENGTH_SHORT).show();
 
         mToolbar = findViewById(R.id.penyedia_nav_action);
         setSupportActionBar(mToolbar);
@@ -40,20 +68,44 @@ public class HalamanSayaActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                         set item as selected to persist highlight
-//                        menuItem.setChecked(true);
-
                         penyedia_pindahactivity(menuItem);
-
                         // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
-
-                        // Add code here to update the UI based on the item selected
+                        mDrawerLayout.closeDrawers();// Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
-
                         return true;
                     }
                 });
+
+        view = navigationView.getHeaderView(0);
+        header = view.findViewById(R.id.penyedia_nav_header_text1);
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    PenyediaProfil profil = (PenyediaProfil) postSnapshot.getValue(PenyediaProfil.class);
+                    telepon = profil.getNoTelp();
+                    alamat = profil.getAlamat();
+                    jam = profil.getJamBukaTutup();
+                    pemilik = profil.getNamaPemilik();
+                    penyedia = profil.getNamaVenue();
+                    telpPenyedia.setText(telepon);
+                    alamatPenyedia.setText(alamat);
+                    jamBukaTutup.setText(jam);
+                    namaPemilik.setText(pemilik);
+                    namaVenue.setText(penyedia);
+                    //Toast.makeText(HalamanSayaActivity.this, telepon+" "+alamat, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
         editprofile = findViewById(R.id.penyedia_profile_edit);
         editprofile.setOnClickListener(new View.OnClickListener() {

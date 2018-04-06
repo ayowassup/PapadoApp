@@ -175,8 +175,9 @@ public class DaftarActivity extends AppCompatActivity {
                                                 akun.put("/users/" + uid + "/address", address);
                                                 akun.put("/users/" + uid + "/kategori", kategori);
                                                 akun.put("/users/" + uid + "/telepon", phone);
-                                                akun.put("/penyedia/" + key + "/userId", uid);
-                                                akun.put("/penyedia/" + key + "/kategori", kategori);
+                                                akun.put("/penyedia/" + uid + "/alamat", address);
+                                                akun.put("/penyedia/" + uid+ "/kategori", kategori);
+                                                akun.put("/penyedia/"+ uid +"/noTelp", phone);
                                                 akun.put("/lapangan/" + uid + "/namaTempat", tempat);
 
                                                 mDatabase.updateChildren(akun).addOnCompleteListener(new OnCompleteListener<Void>() {

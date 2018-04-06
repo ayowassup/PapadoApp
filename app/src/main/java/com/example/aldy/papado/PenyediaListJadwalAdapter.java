@@ -34,7 +34,6 @@ public class PenyediaListJadwalAdapter extends RecyclerView.Adapter<PenyediaList
 
         public ViewHolder(View v) {
             super(v);
-
             jam1 = v.findViewById(R.id.penyedia_list_jamjadwal1);
             jam2 = v.findViewById(R.id.penyedia_list_jamjadwal2);
             linearLayout = v.findViewById(R.id.penyedia_clicklistener_list_jadwal);

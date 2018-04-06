@@ -21,6 +21,7 @@ public class PenyediaListLapanganAdapter extends RecyclerView.Adapter<PenyediaLi
     private List<PenyediaListLapangan> listitem;
     private Context context;
 
+
     public PenyediaListLapanganAdapter(List<PenyediaListLapangan> listitem, Context context) {
         this.listitem = listitem;
         this.context = context;

@@ -57,9 +57,9 @@ public class TambahlapActivity extends AppCompatActivity {
                 String key = mDatabase.push().getKey();
 
                 Map <String, Object> tambahLap = new HashMap<String, Object>();
-                tambahLap.put("/lapangan/" + uid + "/namaLapangan", namaLap);
-                tambahLap.put("/lapangan/" + uid + "/ukuranLapangan", ukuran);
-                tambahLap.put("/lapangan/" +uid + "/hargaLapangan", harga);
+                tambahLap.put("/lapangan/" + uid +"/"+key+ "/namaLapangan", namaLap);
+                tambahLap.put("/lapangan/" + uid +"/"+key+ "/ukuranLapangan", ukuran);
+                tambahLap.put("/lapangan/" +uid +"/"+key+ "/hargaLapangan", harga);
 
                 mDatabase.updateChildren(tambahLap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

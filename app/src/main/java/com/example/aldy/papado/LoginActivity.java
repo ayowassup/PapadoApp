@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = inputUsername.getText().toString();
                 final String password = inputPassword.getText().toString();
-                        if (email.matches("") || pass.getText().toString().matches("")) {
+                        if (email.matches("") || password.matches("")) {
                             //ini kalau username kosong atau pass kosong
                             Toast.makeText(LoginActivity.this, "Masukkan data dengan benar", Toast.LENGTH_LONG).show();
                         } else {

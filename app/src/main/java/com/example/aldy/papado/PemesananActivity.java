@@ -8,12 +8,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PemesananActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mRef;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,24 +42,27 @@ public class PemesananActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = findViewById(R.id.penyedia_nav_view);
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference();
+
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                         set item as selected to persist highlight
-//                        menuItem.setChecked(true);
 
                         penyedia_pindahactivity(menuItem);
 
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
                         return true;
                     }
                 });
+        View view = navigationView.getHeaderView(0);
+        TextView header = view.findViewById(R.id.penyedia_nav_header_text1);
+        String uid = mAuth.getCurrentUser().getUid();
+
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {

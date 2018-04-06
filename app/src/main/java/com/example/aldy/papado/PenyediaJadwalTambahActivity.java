@@ -95,8 +95,8 @@ public class PenyediaJadwalTambahActivity extends AppCompatActivity {
                 String key = mDatabase.push().getKey();
 
                 Map <String, Object> tambahJadwal = new HashMap<String, Object>();
-                tambahJadwal.put("/jadwal/" + uid + "/jamAwal", jamAwal);
-                tambahJadwal.put("/jadwal/" + uid + "/jamAkhir", jamAkhir);
+                tambahJadwal.put("/jadwal/" + uid + "/" +key+ "/jamAwal", jamAwal);
+                tambahJadwal.put("/jadwal/" + uid + "/" +key+ "/jamAkhir", jamAkhir);
 
                 mDatabase.updateChildren(tambahJadwal).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

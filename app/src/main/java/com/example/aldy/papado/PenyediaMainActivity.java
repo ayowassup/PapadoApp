@@ -1,6 +1,9 @@
 package com.example.aldy.papado;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,8 +17,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +41,14 @@ public class PenyediaMainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private List<PenyediaListLapangan> listitem;
     private Button tambahlap;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mRef;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private TextView mName;
+    private ImageView mImage;
+    private Uri mPhotoUrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +66,20 @@ public class PenyediaMainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference();
+
         NavigationView navigationView = findViewById(R.id.penyedia_nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                         set item as selected to persist highlight
                         menuItem.setChecked(true);
-
                         penyedia_pindahactivity(menuItem);
-
-                        // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
                         return true;
                     }
                 });
@@ -69,21 +87,33 @@ public class PenyediaMainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.penyedia_recycler_list_lapangan);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayout = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayout);
+        linearLayout.setStackFromEnd(true);
+
 
         //DUMMY DATA (BELUM NGAMBIL DARI SERVER)
         listitem = new ArrayList<>();
+        mRef.child("lapangan").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String namaLapangan = postSnapshot.child("namaLapangan").getValue(String.class);
+                    String ukuranLapangan = postSnapshot.child("ukuranLapangan").getValue(String.class);
+                    String hargaLapangan = postSnapshot.child("hargaLapangan").getValue(String.class);
+                    listitem.add(new PenyediaListLapangan(namaLapangan, ukuranLapangan, hargaLapangan));
+                }
+                adapter = new PenyediaListLapanganAdapter(listitem, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
 
-        for (int i = 0; i<20; i++){
-            PenyediaListLapangan listitems = new PenyediaListLapangan("namalap"+(i+1), "ukuranlap", "1000");
-            listitem.add(listitems);
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        adapter = new PenyediaListLapanganAdapter(listitem,this);
+            }
+        });
 
-        recyclerView.setAdapter(adapter);
-
-        ///////
         tambahlap = findViewById(R.id.penyedia_tambahlap);
         tambahlap.setOnClickListener(new View.OnClickListener() {
             @Override
