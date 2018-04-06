@@ -5,7 +5,7 @@ package com.example.aldy.papado;
  */
 
 public class PenyediaListPemesanan {
-        private String namaLap, tanggalPesan, namaPesan, waktuPesan, noTelpPesan;
+    private String namaLap, tanggalPesan, namaPesan, waktuPesan, noTelpPesan;
 
     public PenyediaListPemesanan(String namaLap, String tanggalPesan, String namaPesan, String waktuPesan, String noTelpPesan) {
         this.namaLap = namaLap;

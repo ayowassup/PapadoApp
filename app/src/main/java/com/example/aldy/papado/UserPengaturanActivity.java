@@ -120,13 +120,13 @@ public class UserPengaturanActivity extends AppCompatActivity {
     }
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.user_nav_favorit:
-                Intent favorit = new Intent(UserPengaturanActivity.this, UserFavoritActivity.class);
+            case R.id.user_nav_profil:
+                Intent favorit = new Intent(UserPengaturanActivity.this, UserProfilActivity.class);
                 startActivity(favorit);
                 finish();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserPengaturanActivity.this, UserPemesananActivity.class);
+                Intent pemesanan = new Intent(UserPengaturanActivity.this, UserNotifActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
@@ -160,7 +160,7 @@ public class UserPengaturanActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserPengaturanActivity.this,UserPemesananActivity.class);
+        Intent intent = new Intent(UserPengaturanActivity.this,UserNotifActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

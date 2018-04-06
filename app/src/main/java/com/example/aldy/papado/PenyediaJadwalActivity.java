@@ -7,13 +7,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,22 +125,22 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.penyedia_nav_halamansaya:
-                Intent halamansaya = new Intent(PenyediaJadwalActivity.this, HalamanSayaActivity.class);
+                Intent halamansaya = new Intent(PenyediaJadwalActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
                 break;
             case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(PenyediaJadwalActivity.this, PemesananActivity.class);
+                Intent pemesanan = new Intent(PenyediaJadwalActivity.this, PenyediaPemesananActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
-                Intent pengaturan = new Intent(PenyediaJadwalActivity.this, PengaturanActivity.class);
+                Intent pengaturan = new Intent(PenyediaJadwalActivity.this, PenyediaPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;
             case R.id.penyedia_nav_jenislapangan:
-                Intent jenislapangan = new Intent(PenyediaJadwalActivity.this, PenyediaMainActivity.class);
+                Intent jenislapangan = new Intent(PenyediaJadwalActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
                 finish();
                 break;
@@ -162,7 +160,7 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent jenislapangan = new Intent(PenyediaJadwalActivity.this, PenyediaMainActivity.class);
+        Intent jenislapangan = new Intent(PenyediaJadwalActivity.this, PenyediaDaftarLapanganActivity.class);
         startActivity(jenislapangan);
         finish();
 //        super.onBackPressed();

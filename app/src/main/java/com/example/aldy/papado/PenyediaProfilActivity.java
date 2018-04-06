@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HalamanSayaActivity extends AppCompatActivity {
+public class PenyediaProfilActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
@@ -37,7 +37,7 @@ public class HalamanSayaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_halaman_saya);
+        setContentView(R.layout.activity_penyedia_profil);
 
         namaVenue = findViewById(R.id.penyedia_profile_nama);
         namaPemilik = findViewById(R.id.penyedia_profile_ownername);
@@ -111,7 +111,7 @@ public class HalamanSayaActivity extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (HalamanSayaActivity.this, PenyediaEditprofilActivity.class);
+                Intent intent = new Intent (PenyediaProfilActivity.this, PenyediaEditprofilActivity.class);
                 startActivity(intent);
 
             }
@@ -121,27 +121,27 @@ public class HalamanSayaActivity extends AppCompatActivity {
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.penyedia_nav_halamansaya:
-                Intent halamansaya = new Intent(HalamanSayaActivity.this, HalamanSayaActivity.class);
+                Intent halamansaya = new Intent(PenyediaProfilActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
                 break;
             case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(HalamanSayaActivity.this, PemesananActivity.class);
+                Intent pemesanan = new Intent(PenyediaProfilActivity.this, PenyediaPemesananActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
-                Intent pengaturan = new Intent(HalamanSayaActivity.this, PengaturanActivity.class);
+                Intent pengaturan = new Intent(PenyediaProfilActivity.this, PenyediaPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;
             case R.id.penyedia_nav_jenislapangan:
-                Intent jenislapangan = new Intent(HalamanSayaActivity.this, PenyediaMainActivity.class);
+                Intent jenislapangan = new Intent(PenyediaProfilActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
                 finish();
                 break;
             case R.id.penyedia_nav_jadwal:
-                Intent jadwal= new Intent(HalamanSayaActivity.this, PenyediaJadwalActivity.class);
+                Intent jadwal= new Intent(PenyediaProfilActivity.this, PenyediaJadwalActivity.class);
                 startActivity(jadwal);
                 finish();
                 break;
@@ -156,7 +156,7 @@ public class HalamanSayaActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent jenislapangan = new Intent(HalamanSayaActivity.this, PenyediaMainActivity.class);
+        Intent jenislapangan = new Intent(PenyediaProfilActivity.this, PenyediaDaftarLapanganActivity.class);
         startActivity(jenislapangan);
         finish();
 //        super.onBackPressed();

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,9 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class DaftarActivity extends AppCompatActivity {
-
     static final String jenis_user[] = {"Penyewa", "P. Badminton", "P. Futsal", "P. Renang"};
-
     private EditText inputUsername, inputPassword, rePassword, inputEmail, inputAddress, inputPhone, namaTempat;
     private FirebaseAuth auth;
     private DatabaseReference mDatabase;
@@ -42,6 +39,7 @@ public class DaftarActivity extends AppCompatActivity {
     Spinner spinner;
     CheckBox checkBox;
     Boolean user = true;
+    Intent penyedia, penyewa;
 
 
     @Override
@@ -77,11 +75,16 @@ public class DaftarActivity extends AppCompatActivity {
                 // Kalau ada yang dipilih. Bisa dipanggil pake
                 //adapterView.getItemAtPosition(i)
                 LinearLayout a = findViewById(R.id.daftar_namatempat_text_hidden);
+                LinearLayout b = findViewById(R.id.daftar_alamat_text_hidden);
                 if (adapterView.getItemAtPosition(i) != "Penyewa") {
                     a.setVisibility(View.VISIBLE);
+                    b.setVisibility(View.VISIBLE);
+
                     user = false;
                 } else {
                     a.setVisibility(View.GONE);
+                    b.setVisibility(View.GONE);
+
                     user = true;
                 }
             }
@@ -95,8 +98,10 @@ public class DaftarActivity extends AppCompatActivity {
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(DaftarActivity.this, PenyediaMainActivity.class);
+//                final Intent intent = new Intent(DaftarActivity.this, .class);
 
+                penyedia = new Intent(DaftarActivity.this, PenyediaListLapangan.class);
+                penyewa = new Intent(DaftarActivity.this, UserNotifActivity.class);
                 email = inputEmail.getText().toString();
                 username = inputUsername.getText().toString();
                 pass = inputPassword.getText().toString();
@@ -146,7 +151,7 @@ public class DaftarActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Toast.makeText(DaftarActivity.this, "Berhasil mendaftar akun", Toast.LENGTH_SHORT).show();
-                                                    startActivity(intent);
+                                                    startActivity(penyewa);
                                                     finish();
                                                 }
                                             });
@@ -184,7 +189,7 @@ public class DaftarActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         Toast.makeText(DaftarActivity.this, "Berhasil mendaftar akun", Toast.LENGTH_SHORT).show();
-                                                        startActivity(intent);
+                                                        startActivity(penyedia);
                                                         finish();
                                                     }
                                                 });

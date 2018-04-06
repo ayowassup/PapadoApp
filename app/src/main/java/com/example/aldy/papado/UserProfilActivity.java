@@ -9,15 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
-public class UserFavoritActivity extends AppCompatActivity {
+public class UserProfilActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
+    private TextView editprofile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_favorit);
+        setContentView(R.layout.activity_user_profil);
 
         mToolbar = findViewById(R.id.user_nav_action);
         setSupportActionBar(mToolbar);
@@ -42,34 +45,48 @@ public class UserFavoritActivity extends AppCompatActivity {
             }
         });
 
+//        ini kalau mau rubah nama di headernya
+//        View hview = navigationView.getHeaderView(0);
+//        TextView headercoba = hview.findViewById(R.id.user_nav_header_text1);
+//        headercoba.setText("aldjflaksjdfklasjdflkalskdfj");
+
+        /////
+        editprofile = findViewById(R.id.user_profile_edit);
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfilActivity.this,UserEditProfilActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.user_nav_favorit:
+            case R.id.user_nav_profil:
                 mDrawerLayout.closeDrawers();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserFavoritActivity.this, UserPemesananActivity.class);
+                Intent pemesanan = new Intent(UserProfilActivity.this, UserNotifActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
             case R.id.user_nav_riwayat:
-                Intent riwayat = new Intent(UserFavoritActivity.this, UserRiwayatActivity.class);
+                Intent riwayat = new Intent(UserProfilActivity.this, UserRiwayatActivity.class);
                 startActivity(riwayat);
                 finish();
                 break;
             case R.id.user_nav_badminton:
-                Intent badminton = new Intent(UserFavoritActivity.this, UserBadmintonActivity.class);
+                Intent badminton = new Intent(UserProfilActivity.this, UserBadmintonActivity.class);
                 startActivity(badminton);
                 finish();
                 break;
             case R.id.user_nav_futsal:
-                Intent futsal= new Intent(UserFavoritActivity.this, UserFutsalActivity.class);
+                Intent futsal= new Intent(UserProfilActivity.this, UserFutsalActivity.class);
                 startActivity(futsal);
                 finish();
                 break;
             case R.id.user_nav_pengaturan:
-                Intent pengaturan= new Intent(UserFavoritActivity.this, UserPengaturanActivity.class);
+                Intent pengaturan= new Intent(UserProfilActivity.this, UserPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;
@@ -85,7 +102,7 @@ public class UserFavoritActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserFavoritActivity.this,UserPemesananActivity.class);
+        Intent intent = new Intent(UserProfilActivity.this,UserNotifActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

@@ -12,8 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
-import android.text.method.CharacterPickerDialog;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,11 +26,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class PenyediaMainActivity extends AppCompatActivity {
+public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -53,7 +50,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_penyedia_main);
+        setContentView(R.layout.activity_penyedia_daftarlap);
 
         mToolbar = findViewById(R.id.penyedia_nav_action);
         setSupportActionBar(mToolbar);
@@ -118,7 +115,7 @@ public class PenyediaMainActivity extends AppCompatActivity {
         tambahlap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PenyediaMainActivity.this, TambahlapActivity.class);
+                Intent intent = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaTambahlapActivity.class);
                 startActivity(intent);
             }
         });
@@ -127,27 +124,27 @@ public class PenyediaMainActivity extends AppCompatActivity {
     public void penyedia_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.penyedia_nav_halamansaya:
-                Intent halamansaya = new Intent(PenyediaMainActivity.this, HalamanSayaActivity.class);
+                Intent halamansaya = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
                 break;
             case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(PenyediaMainActivity.this, PemesananActivity.class);
+                Intent pemesanan = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaPemesananActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
-                Intent pengaturan = new Intent(PenyediaMainActivity.this, PengaturanActivity.class);
+                Intent pengaturan = new Intent(PenyediaDaftarLapanganActivity.this, PengaturanActivity.PenyediaPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;
             case R.id.penyedia_nav_jenislapangan:
-                Intent jenislapangan = new Intent(PenyediaMainActivity.this, PenyediaMainActivity.class);
+                Intent jenislapangan = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
                 finish();
                 break;
             case R.id.penyedia_nav_jadwal:
-                Intent jadwal= new Intent(PenyediaMainActivity.this, PenyediaJadwalActivity.class);
+                Intent jadwal= new Intent(PenyediaDaftarLapanganActivity.this, PenyediaJadwalActivity.class);
                 startActivity(jadwal);
                 finish();
                 break;

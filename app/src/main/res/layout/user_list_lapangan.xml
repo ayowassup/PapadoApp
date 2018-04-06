@@ -20,7 +20,7 @@
                 android:background="#ffffff" />
 
             <LinearLayout
-                android:id="@+id/penyedia_clicklistener_list_lap"
+                android:id="@+id/user_clicklistener_list_lap"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginLeft="16dp"
@@ -29,7 +29,7 @@
 
                 <TextView
                     android:textColor="@color/putih"
-                    android:id="@+id/penyedia_list_namalap"
+                    android:id="@+id/user_list_namalap"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -38,7 +38,7 @@
 
                 <TextView
                     android:textColor="@color/putih"
-                    android:id="@+id/penyedia_list_ukuranlap"
+                    android:id="@+id/user_list_ukuranlap"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -47,7 +47,7 @@
 
                 <TextView
                     android:textColor="@color/putih"
-                    android:id="@+id/penyedia_list_hargalap"
+                    android:id="@+id/user_list_hargalap"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

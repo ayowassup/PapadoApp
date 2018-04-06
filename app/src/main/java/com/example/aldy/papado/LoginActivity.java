@@ -5,8 +5,6 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -48,10 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         // Lihat user terkini
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, PenyediaMainActivity.class));
-            finish();
-        }
+//        if (auth.getCurrentUser() != null) {
+//            startActivity(new Intent(LoginActivity.this, PenyediaMainActivity.class));
+//            finish();
+//        }
 
         auth = FirebaseAuth.getInstance();
         inputUsername = findViewById(R.id.login_username_text);
@@ -91,11 +89,11 @@ public class LoginActivity extends AppCompatActivity {
                                                         String jenis = dataSnapshot.getValue().toString();
                                                         Toast.makeText(LoginActivity.this, "Jenis User " + jenis, Toast.LENGTH_SHORT).show();
                                                         if (jenis.equalsIgnoreCase("Penyewa")) {
-                                                            Intent penyewa = new Intent(LoginActivity.this, UserPemesananActivity.class);
+                                                            Intent penyewa = new Intent(LoginActivity.this, UserNotifActivity.class);
                                                             penyewa.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                             startActivity(penyewa);
                                                         } else {
-                                                            Intent penyedia = new Intent(LoginActivity.this, PenyediaMainActivity.class);
+                                                            Intent penyedia = new Intent(LoginActivity.this, PenyediaListPemesanan.class);
                                                             penyedia.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                             startActivity(penyedia);
                                                         }
@@ -136,11 +134,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-//        username = findViewById(R.id.login_username_text);
-//        pass = findViewById(R.id.login_password_text);
-        Button masuk = findViewById(R.id.login_button_masuk);
-
 
         TextView daftar = findViewById(R.id.login_button_daftar);
         daftar.setOnClickListener(new View.OnClickListener() {

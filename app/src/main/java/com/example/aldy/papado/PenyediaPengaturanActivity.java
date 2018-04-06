@@ -10,9 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
+<<<<<<< HEAD:app/src/main/java/com/example/aldy/papado/PengaturanActivity.java
 import android.widget.Toast;
 
 //Untuk akun
@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PengaturanActivity extends AppCompatActivity {
+=======
+public class PenyediaPengaturanActivity extends AppCompatActivity {
+>>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab:app/src/main/java/com/example/aldy/papado/PenyediaPengaturanActivity.java
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
@@ -35,7 +38,7 @@ public class PengaturanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pengaturan);
+        setContentView(R.layout.activity_penyedia_pengaturan);
 
         mToolbar = findViewById(R.id.penyedia_nav_action);
         setSupportActionBar(mToolbar);
@@ -78,6 +81,7 @@ public class PengaturanActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD:app/src/main/java/com/example/aldy/papado/PengaturanActivity.java
                 auth.signOut();
                 if (auth.getCurrentUser() == null) {
                     Intent loginActivity = new Intent(PengaturanActivity.this, LoginActivity.class);
@@ -101,6 +105,9 @@ public class PengaturanActivity extends AppCompatActivity {
                             }
                         });
                 Intent intent = new Intent(PengaturanActivity.this, LoginActivity.class);
+=======
+                Intent intent = new Intent(PenyediaPengaturanActivity.this, LoginActivity.class);
+>>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab:app/src/main/java/com/example/aldy/papado/PenyediaPengaturanActivity.java
                 startActivity(intent);
                 finish();
 
@@ -111,27 +118,27 @@ public class PengaturanActivity extends AppCompatActivity {
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.penyedia_nav_halamansaya:
-                Intent halamansaya = new Intent(PengaturanActivity.this, HalamanSayaActivity.class);
+                Intent halamansaya = new Intent(PenyediaPengaturanActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
                 break;
             case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(PengaturanActivity.this, PemesananActivity.class);
+                Intent pemesanan = new Intent(PenyediaPengaturanActivity.this, PenyediaPemesananActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
-                Intent pengaturan = new Intent(PengaturanActivity.this, PengaturanActivity.class);
+                Intent pengaturan = new Intent(PenyediaPengaturanActivity.this, PenyediaPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;
             case R.id.penyedia_nav_jenislapangan:
-                Intent jenislapangan = new Intent(PengaturanActivity.this, PenyediaMainActivity.class);
+                Intent jenislapangan = new Intent(PenyediaPengaturanActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
                 finish();
                 break;
             case R.id.penyedia_nav_jadwal:
-                Intent jadwal= new Intent(PengaturanActivity.this, PenyediaJadwalActivity.class);
+                Intent jadwal= new Intent(PenyediaPengaturanActivity.this, PenyediaJadwalActivity.class);
                 startActivity(jadwal);
                 finish();
                 break;
@@ -148,7 +155,7 @@ public class PengaturanActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent jenislapangan = new Intent(PengaturanActivity.this, PenyediaMainActivity.class);
+        Intent jenislapangan = new Intent(PenyediaPengaturanActivity.this, PenyediaDaftarLapanganActivity.class);
         startActivity(jenislapangan);
         finish();
 //        super.onBackPressed();

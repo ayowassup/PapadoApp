@@ -7,15 +7,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserBadmintonActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
+
+    private RecyclerView recyclerView;
+    private UserListVenueAdapter adapter;
+    private List<UserListVenue> listVenues = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,26 +54,37 @@ public class UserBadmintonActivity extends AppCompatActivity {
             }
         });
 
-        RelativeLayout pesan_badminton = findViewById(R.id.cobapesanbadminton);
-        pesan_badminton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserBadmintonActivity.this, UserPemesananListActivity.class);
-                startActivity(intent);
+        /////
+        recyclerView = findViewById(R.id.user_recycler_list_venue_badminton);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        for (int i = 0;i<20;i++){
+            UserListVenue listVenue = new UserListVenue("venue badminton"+i, "ub");
+            listVenues.add(listVenue);
+        }
+
+        adapter = new UserListVenueAdapter(listVenues, this);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new UserListVenueAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(UserBadmintonActivity.this, UserPemesananLapanganActivity.class);
+                startActivity(intent);
             }
         });
 
     }
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.user_nav_favorit:
-                Intent favorit = new Intent(UserBadmintonActivity.this, UserFavoritActivity.class);
+            case R.id.user_nav_profil:
+                Intent favorit = new Intent(UserBadmintonActivity.this, UserProfilActivity.class);
                 startActivity(favorit);
                 finish();
                 break;
             case R.id.user_nav_pemesanan:
-                Intent pemesanan = new Intent(UserBadmintonActivity.this, UserPemesananActivity.class);
+                Intent pemesanan = new Intent(UserBadmintonActivity.this, UserNotifActivity.class);
                 startActivity(pemesanan);
                 finish();
                 break;
@@ -97,7 +118,7 @@ public class UserBadmintonActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserBadmintonActivity.this,UserPemesananActivity.class);
+        Intent intent = new Intent(UserBadmintonActivity.this,UserNotifActivity.class);
         startActivity(intent);
         finish();
 //        super.onBackPressed();

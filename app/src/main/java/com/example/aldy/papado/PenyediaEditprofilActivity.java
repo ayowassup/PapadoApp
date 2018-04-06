@@ -35,6 +35,7 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penyedia_editprofil);
+<<<<<<< HEAD
         namaVenue = findViewById(R.id.penyedia_edit_venue);
         namaPemilik = findViewById(R.id.penyedia_edit_nama);
         alamatPenyedia = findViewById(R.id.penyedia_edit_alamat);
@@ -77,6 +78,16 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
                     }
                 });
 
+=======
+        save = findViewById(R.id.penyedia_save_editprofile);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //kalau save diklik
+                Intent intent = new Intent(PenyediaEditprofilActivity.this, PenyediaProfilActivity.class);
+                startActivity(intent);
+                finish();
+>>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab
             }
         });
     }

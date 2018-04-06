@@ -61,6 +61,7 @@ public class PenyediaListLapanganAdapter extends RecyclerView.Adapter<PenyediaLi
             @Override
             public void onClick(View view) {
                 //ambil data dari setiap listnya lewat "listItem" ditambah .getnamalap()/hargalap()/ukuranlap();
+                //awas tertipu sama listItem sama listitem BEDA BESAR KECIL DOANG
                 Toast.makeText(context, "you clicked "+listItem.getNamalap(),Toast.LENGTH_LONG).show();
             }
         });

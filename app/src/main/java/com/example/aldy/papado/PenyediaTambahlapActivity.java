@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class TambahlapActivity extends AppCompatActivity {
+public class PenyediaTambahlapActivity extends AppCompatActivity {
     private Button simpan;
     FirebaseAuth auth;
     DatabaseReference mDatabase;
@@ -30,7 +30,8 @@ public class TambahlapActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambahlap);
+
+        setContentView(R.layout.activity_penyedia_tambahlap);
         //FirebaseAuth
         auth = FirebaseAuth.getInstance();
 
@@ -48,7 +49,7 @@ public class TambahlapActivity extends AppCompatActivity {
                 namaLap = inputNama.getText().toString();
                 ukuran = inputUkuran.getText().toString();
                 harga = inputHarga.getText().toString();
-                mainLap = new Intent(TambahlapActivity.this,PenyediaMainActivity.class);
+                mainLap = new Intent(PenyediaTambahlapActivity.this,PenyediaListLapangan.class);
 
                 //Auth
                 auth = FirebaseAuth.getInstance();
@@ -64,7 +65,7 @@ public class TambahlapActivity extends AppCompatActivity {
                 mDatabase.updateChildren(tambahLap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(TambahlapActivity.this, "Berhasil menambah lapangan baru", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PenyediaTambahlapActivity.this, "Berhasil menambah lapangan baru", Toast.LENGTH_SHORT).show();
                         startActivity(mainLap);
                         finish();
                     }
