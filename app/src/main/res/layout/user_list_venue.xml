@@ -9,17 +9,18 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="wrap_content"
             android:padding="10dp">
 
             <ImageView
                 android:id="@+id/user_list_backgroundfoto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="170dp"
                 android:background="@color/colorPrimaryDark"
-                android:src="@drawable/ic_account_circle_black_48dp" />
+                android:src="@drawable/dummy_photo_profile" />
 
             <RelativeLayout
+                android:layout_below="@id/user_list_backgroundfoto"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
@@ -43,21 +44,15 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:src="@drawable/ic_account_circle_black_48dp" />
+                        android:src="@mipmap/lokasi_merah" />
 
                     <TextView
                         android:id="@+id/user_list_alamatvenue"
                         android:layout_width="wrap_content"
+                        android:layout_marginLeft="8dp"
                         android:layout_height="wrap_content"
                         android:text="ini alamat venue" />
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/favorit_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_account_circle_black_48dp" />
             </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

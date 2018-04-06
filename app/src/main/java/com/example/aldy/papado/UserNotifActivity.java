@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -36,7 +37,7 @@ public class UserNotifActivity extends AppCompatActivity {
     private TextView header;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<UserListNotif> listVenues;
+    private List<UserListNotif> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,10 @@ public class UserNotifActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
 
+        //Navigation
         NavigationView navigationView = findViewById(R.id.user_nav_view);
+        navigationView.getMenu().findItem(R.id.user_nav_pemesanan).setEnabled(false);
+        navigationView.getMenu().findItem(R.id.user_nav_pemesanan).setChecked(true);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -73,12 +77,13 @@ public class UserNotifActivity extends AppCompatActivity {
 
                 return true;
             }
+
         });
 
 
         view = navigationView.getHeaderView(0);
         header = view.findViewById(R.id.user_nav_header_text1);
-        mDatabase.child("users").child(uid).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String username = dataSnapshot.getValue().toString();
@@ -90,31 +95,46 @@ public class UserNotifActivity extends AppCompatActivity {
             }
         });
 
-    }
-        ////
         recyclerView = findViewById(R.id.user_recycler_list_notif);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //DUMMY DATA
-        listVenues = new ArrayList<>();
+        list = new ArrayList<>();
+        mDatabase.child("pemesanan").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String namaLapangan = postSnapshot.child("namaLapangan").getValue(String.class);
+                    String namaVenue = postSnapshot.child("namaVenue").getValue(String.class);
+                    String tanggalPesan = postSnapshot.child("tanggalPesan").getValue(String.class);
+                    String statusPesan = postSnapshot.child("statusPesan").getValue(String.class);
+                    String jamPesan = postSnapshot.child("jamPesan").getValue(String.class);
+                    String telpPenyedia = postSnapshot.child("telpPenyedia").getValue(String.class);
 
-        for (int i = 0; i<20; i++) {
-            UserListNotif listVenue = new UserListNotif("nama lap aduh "+i,"23-23-2323", "11:00 - 12:00", "081034194234", "aldy","belum di acc");
-            listVenues.add(listVenue);
-        }
+                    list.add(new UserListNotif(namaLapangan, tanggalPesan, jamPesan, telpPenyedia, namaVenue, statusPesan));
+                }
+                adapter = new UserListNotifAdapter(list, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
 
-        adapter = new UserListNotifAdapter(listVenues, this);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        adapter = new UserListNotifAdapter(list, this);
         recyclerView.setAdapter(adapter);
-
-        }
+    }
 
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.user_nav_profil:
-                Intent favorit = new Intent(UserNotifActivity.this, UserProfilActivity.class);
-                startActivity(favorit);
+                Intent profil = new Intent(UserNotifActivity.this, UserProfilActivity.class);
+                startActivity(profil);
                 finish();
                 break;
             case R.id.user_nav_pemesanan:

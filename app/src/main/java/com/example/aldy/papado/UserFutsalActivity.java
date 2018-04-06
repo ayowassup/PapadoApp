@@ -12,6 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +29,24 @@ public class UserFutsalActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private UserListVenueAdapter adapter;
-    private List<UserListVenue> listVenues = new ArrayList<>();
+    private List<UserListVenue> listVenues;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mRef;
+    private FirebaseDatabase mDatabase;
+    private String alamatVenue, namaVenue, uidVenue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_futsal);
+
+        //Auth & User
+        mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
+
+        //Database
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference();
 
         mToolbar = findViewById(R.id.user_nav_action);
         setSupportActionBar(mToolbar);
@@ -41,6 +60,8 @@ public class UserFutsalActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = findViewById(R.id.user_nav_view);
+        navigationView.getMenu().findItem(R.id.user_nav_futsal).setEnabled(false);
+        navigationView.getMenu().findItem(R.id.user_nav_futsal).setChecked(true);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -52,27 +73,43 @@ public class UserFutsalActivity extends AppCompatActivity {
             }
         });
 
-        /////
-        /////
+        //RecyclerView
         recyclerView = findViewById(R.id.user_recycler_list_venue_futsal);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayout = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayout);
+        linearLayout.setStackFromEnd(true);
 
-        for (int i = 0;i<20;i++){
-            UserListVenue listVenue = new UserListVenue("venue futsal"+i, "ub");
-            listVenues.add(listVenue);
-        }
-
-        adapter = new UserListVenueAdapter(listVenues, this);
-        recyclerView.setAdapter(adapter);
-
-        adapter.setOnItemClickListener(new UserListVenueAdapter.OnItemClickListener() {
+        listVenues = new ArrayList<>();
+        mRef.child("venue").child("Futsal").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(UserFutsalActivity.this, UserPemesananLapanganActivity.class);
-                startActivity(intent);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    alamatVenue = postSnapshot.child("alamat").getValue(String.class);
+                    namaVenue = postSnapshot.child("namaTempat").getValue(String.class);
+                    uidVenue = postSnapshot.child("uid").getValue(String.class);
+                    listVenues.add(new UserListVenue(namaVenue, alamatVenue));
+                }
+                adapter = new UserListVenueAdapter(listVenues, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                adapter.setOnItemClickListener(new UserListVenueAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Intent intent = new Intent(UserFutsalActivity.this, UserPemesananLapanganActivity.class);
+                        intent.putExtra("uid",uidVenue);
+                        intent.putExtra("namavenue", namaVenue);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
+
     }
     public void user_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
@@ -119,6 +156,5 @@ public class UserFutsalActivity extends AppCompatActivity {
         Intent intent = new Intent(UserFutsalActivity.this,UserNotifActivity.class);
         startActivity(intent);
         finish();
-//        super.onBackPressed();
     }
 }

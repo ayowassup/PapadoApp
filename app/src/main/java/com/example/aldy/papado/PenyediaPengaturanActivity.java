@@ -9,29 +9,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
-
-<<<<<<< HEAD:app/src/main/java/com/example/aldy/papado/PengaturanActivity.java
 import android.widget.Toast;
 
 //Untuk akun
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class PengaturanActivity extends AppCompatActivity {
-=======
 public class PenyediaPengaturanActivity extends AppCompatActivity {
->>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab:app/src/main/java/com/example/aldy/papado/PenyediaPengaturanActivity.java
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-    private FirebaseUser user;
-    private FirebaseAuth auth;
-    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseUser mUser;
+    private FirebaseAuth mAuth;
     private LinearLayout logout, delacc;
 
 
@@ -52,65 +46,70 @@ public class PenyediaPengaturanActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Auth Instance
-        auth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         //User terkini
-        user = auth.getCurrentUser();
+        mUser = mAuth.getCurrentUser();
 
         NavigationView navigationView = findViewById(R.id.penyedia_nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                         set item as selected to persist highlight
-//                        menuItem.setChecked(true);
-
                         penyedia_pindahactivity(menuItem);
-
-                        // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
                         return true;
                     }
                 });
 
         logout = findViewById(R.id.penyedia_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
+        logout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-<<<<<<< HEAD:app/src/main/java/com/example/aldy/papado/PengaturanActivity.java
-                auth.signOut();
-                if (auth.getCurrentUser() == null) {
-                    Intent loginActivity = new Intent(PengaturanActivity.this, LoginActivity.class);
-                    startActivity(loginActivity);
-                    finish();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        logout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        logout.setBackgroundColor(0x00000000);
+                        mAuth.signOut();
+                        if (mAuth.getCurrentUser() == null) {
+                            Intent loginActivity = new Intent(PenyediaPengaturanActivity.this, LoginActivity.class);
+                            startActivity(loginActivity);
+                            finish();
+                        }
+                        break;
                 }
+                return true;
             }
         });
 
+        //Delete Account
         delacc = findViewById(R.id.penyedia_delacc);
-        delacc.setOnClickListener(new View.OnClickListener() {
+        delacc.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                user.delete()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(PengaturanActivity.this, "Akun berhasil dihapus", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                Intent intent = new Intent(PengaturanActivity.this, LoginActivity.class);
-=======
-                Intent intent = new Intent(PenyediaPengaturanActivity.this, LoginActivity.class);
->>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab:app/src/main/java/com/example/aldy/papado/PenyediaPengaturanActivity.java
-                startActivity(intent);
-                finish();
-
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        delacc.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        delacc.setBackgroundColor(0x00000000);
+                        mUser.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(PenyediaPengaturanActivity.this, "Akun berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                        Intent intent = new Intent(PenyediaPengaturanActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                }
+                return true;
             }
         });
     }

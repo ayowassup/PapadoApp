@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.aldy.papado">
+    package="com.example.aldy.papado"
+    xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
@@ -32,40 +33,61 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PenyediaProfilActivity"
-            android:label="Profil saya" />
+            android:label="Profil saya"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PenyediaPemesananActivity"
-            android:label="Pemesanan" />
+            android:label="Pemesanan"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PenyediaPengaturanActivity"
-            android:label="Pengaturan" />
-        <activity android:name=".PenyediaTambahlapActivity" />
+            android:label="Pengaturan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PenyediaTambahlapActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PenyediaJadwalActivity"
-            android:label="Jadwal" />
-        <activity android:name=".PenyediaEditprofilActivity" />
-        <activity android:name=".PenyediaJadwalTambahActivity" />
+            android:label="Jadwal"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PenyediaEditprofilActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PenyediaJadwalTambahActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UserProfilActivity"
-            android:label="User Profil" />
+            android:label="User Profil"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UserNotifActivity"
-            android:label="User Pemesanan" />
-        <activity
-            android:name=".UserRiwayatActivity"
-            android:label="User Riwayat" />
+            android:label="User Pemesanan"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UserBadmintonActivity"
-            android:label="User Badminton" />
+            android:label="User Badminton"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UserFutsalActivity"
-            android:label="User Futsal" />
+            android:label="User Futsal"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UserPengaturanActivity"
-            android:label="User Pengaturan" />
-        <activity android:name=".UserPemesananJadwalActivity" />
-        <activity android:name=".UserPemesananLapanganActivity" />
-        <activity android:name=".UserEditProfilActivity"></activity>
+            android:label="User Pengaturan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserPemesananJadwalActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserPemesananLapanganActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserEditProfilActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.com.vansuita.pickimage.provider"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/picker_provider_paths" />
+        </provider>
     </application>
 
 </manifest>

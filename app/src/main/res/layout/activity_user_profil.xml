@@ -36,10 +36,9 @@
                 <ImageView
                     android:id="@+id/user_profile_foto"
                     android:layout_width="match_parent"
-                    android:layout_height="192dp"
+                    android:layout_height="240dp"
                     android:background="@color/colorPrimaryDark"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_account_circle_black_48dp" />
+                    android:src="@drawable/dummy_photo_profile" />
 
                 <TextView
                     android:id="@+id/user_profile_nama"
@@ -47,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:textStyle="bold"
                     android:text="Ini nama user"
                     android:textSize="32sp" />
 
@@ -105,12 +105,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:text="edit profil" />
+                        android:layout_marginRight="16dp"
+                        android:text="edit profil"
+                        android:textColor="@android:color/secondary_text_light"/>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

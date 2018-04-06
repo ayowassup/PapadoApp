@@ -30,24 +30,25 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private Button tambah;
     private FirebaseDatabase mDatabase;
+    private DatabaseReference mRef;
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private DatabaseReference mRef;
     private List<PenyediaListJadwal> listitem;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //auth
+        mAuth = FirebaseAuth.getInstance();
+        uid = mAuth.getCurrentUser().getUid();
+
         //Database
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference();
         mRef.keepSynced(true);
-
-        //auth
-        mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
 
         setContentView(R.layout.activity_penyedia_jadwal);
         mToolbar = findViewById(R.id.penyedia_nav_action);
@@ -83,10 +84,10 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
             }
         });
 
+        //RecyclerView
         recyclerView = findViewById(R.id.penyedia_recycler_list_jadwal);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
-
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -109,17 +110,6 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
 
             }
         });
-
-////        //DUMMY DATA (BELUM NGAMBIL DARI SERVER)
-////
-////        for (int i = 0; i<20; i++){
-////            PenyediaListJadwal listitems = new PenyediaListJadwal(i+":00", (i+1)+":00");
-////            listitem.add(listitems);
-////        }
-//
-//        adapter = new PenyediaListJadwalAdapter(listitem,this);
-//
-//        recyclerView.setAdapter(adapter);
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
@@ -163,6 +153,5 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
         Intent jenislapangan = new Intent(PenyediaJadwalActivity.this, PenyediaDaftarLapanganActivity.class);
         startActivity(jenislapangan);
         finish();
-//        super.onBackPressed();
     }
 }

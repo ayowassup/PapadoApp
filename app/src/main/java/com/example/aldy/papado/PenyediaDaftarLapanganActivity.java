@@ -1,9 +1,7 @@
 package com.example.aldy.papado;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,8 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,11 +37,7 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private TextView mName;
-    private ImageView mImage;
-    private Uri mPhotoUrl;
-
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +55,11 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Auth dan UID User
         mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
+        uid = mAuth.getCurrentUser().getUid();
 
+        //Firebase Database Referencenya
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference();
 
@@ -81,6 +75,7 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
                     }
                 });
 
+        //RecyclerView
         recyclerView = findViewById(R.id.penyedia_recycler_list_lapangan);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
@@ -88,8 +83,6 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayout);
         linearLayout.setStackFromEnd(true);
 
-
-        //DUMMY DATA (BELUM NGAMBIL DARI SERVER)
         listitem = new ArrayList<>();
         mRef.child("lapangan").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,7 +97,6 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -134,7 +126,7 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
-                Intent pengaturan = new Intent(PenyediaDaftarLapanganActivity.this, PengaturanActivity.PenyediaPengaturanActivity.class);
+                Intent pengaturan = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaPengaturanActivity.class);
                 startActivity(pengaturan);
                 finish();
                 break;
@@ -150,7 +142,6 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
                 break;
         }
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mToggle.onOptionsItemSelected(item)) {
@@ -158,7 +149,6 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     //ini method yang melarang tombol kembali
     @Override
     public void onBackPressed() {

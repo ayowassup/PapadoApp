@@ -3,6 +3,7 @@ package com.example.aldy.papado;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,28 +15,56 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class UserPemesananJadwalActivity extends AppCompatActivity {
     private TextView waktu;
     private Button bdate, btime;
+    private String uidLapangan;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mRef;
+    private FirebaseUser mUser;
+    private FirebaseAuth mAuth;
     Calendar c = Calendar.getInstance();
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     LinearLayout jadwal;
-
-    /////
     private RecyclerView recyclerView;
-    private UserListJadwalAdapter adapter; //dari RecyclerView.Adapter diganti UserListJadwalAdapter buat memperjelas
-
-    private List<UserListJadwal> listJadwals = new ArrayList<>();
+    private UserListJadwalAdapter adapter;
+    private List<UserListJadwal> listJadwal;
+    private String uid,namaVenue, namaLapangan, jam1, jam2, tanggalPesan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_pemesanan_jadwal);
+
+        //Auth
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        uid = mUser.getUid();
+
+        //Database
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference();
+
+        //UID
+        uidLapangan = getIntent().getStringExtra("uid");
+        namaVenue = getIntent().getStringExtra("namavenue");
+        namaLapangan = getIntent().getStringExtra("namalap");
 
         waktu = findViewById(R.id.waktu);
         bdate = findViewById(R.id.user_pemesanan_datepicker);
@@ -47,30 +76,47 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
             }
         });
         updateTextLabel();
-        /////
+
         recyclerView = findViewById(R.id.user_recycler_list_jadwal);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(layoutManager);
 
-        //DUMMY DATA
-        for (int i = 0; i<20; i++){
-            UserListJadwal listitems = new UserListJadwal(i+":00", (i+1)+":00");
-            listJadwals.add(listitems);
-        }
+        tanggalPesan = waktu.getText().toString();
 
-        adapter = new UserListJadwalAdapter(listJadwals, this);
-        recyclerView.setAdapter(adapter);
 
-        ////////
-        adapter.setOnItemClickListener(new UserListJadwalAdapter.OnItemClickListener() {
+        listJadwal = new ArrayList<>();
+        mRef.child("jadwal").child(uidLapangan).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onItemClick(int position) {
-                buatinflater();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String jamAwal = postSnapshot.child("jamAwal").getValue(String.class);
+                    String jamAkhir = postSnapshot.child("jamAkhir").getValue(String.class);
+                    listJadwal.add(new UserListJadwal(jamAwal, jamAkhir));
+                }
+                adapter = new UserListJadwalAdapter(listJadwal, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                adapter.setOnItemClickListener(new UserListJadwalAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        jam1 = listJadwal.get(position).getJam1();
+                        jam2 = listJadwal.get(position).getJam2();
+                        buatinflater();
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-        ////////
+
     }
+
+
     public void buatinflater(){
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(UserPemesananJadwalActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.user_jadwal_dialog, null);
@@ -84,12 +130,40 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //kalau tombol yes diklik
-//                        dialog.dismiss(); // ini method untuk menghilangkan alertdialog
-                Toast.makeText(UserPemesananJadwalActivity.this, "yes", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(UserPemesananJadwalActivity.this, UserNotifActivity.class);
-                startActivity(intent);
-                finish();
+                mRef.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String telpuser = dataSnapshot.child("telepon").getValue(String.class);
+                        String namaPemesan = dataSnapshot.child("nama").getValue(String.class);
+                        HashMap <String, Object> pemesanan = new HashMap<String, Object>();
+                        String key = mRef.push().getKey();
+                        pemesanan.put("pemesanan/"+uid+"/"+key+"/namaVenue", namaVenue);
+                        pemesanan.put("pemesanan/"+uid+"/"+key+"/tanggalPesan", tanggalPesan);
+                        pemesanan.put("pemesanan/"+uid+"/"+key+"/jamPesan", (jam1+" - "+jam2));
+                        pemesanan.put("pemesanan/"+uid+"/"+key+"/namaLapangan", namaLapangan);
+                        pemesanan.put("pemesanan/"+uid+"/"+key+"/statusPesan", "Belum diproses");
+                        pemesanan.put("pemesanan/"+uid+"/"+key+"/namaPemesan", namaPemesan);
+                        pemesanan.put("pemesanan/"+uid+"/"+key+"/telpPemesan", telpuser);
+
+                        pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/uidPemesan", uid);
+                        pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/orderId", key);
+
+                        mRef.updateChildren(pemesanan).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(UserPemesananJadwalActivity.this, "Berhasil booking lapangan", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(UserPemesananJadwalActivity.this, UserNotifActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         no.setOnClickListener(new View.OnClickListener() {

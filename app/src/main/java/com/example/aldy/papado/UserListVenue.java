@@ -5,7 +5,7 @@ package com.example.aldy.papado;
  */
 
 public class UserListVenue {
-    String namavenue, alamatvenue;
+    String namavenue, alamatvenue, uid;
 
     public UserListVenue(String namavenue, String alamatvenue) {
         this.namavenue = namavenue;
@@ -18,5 +18,9 @@ public class UserListVenue {
 
     public String getAlamatvenue() {
         return alamatvenue;
+    }
+
+    public String getUid() {
+        return uid;
     }
 }

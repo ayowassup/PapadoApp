@@ -14,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import android.text.TextUtils;
-import android.widget.EditText;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -31,11 +29,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class DaftarActivity extends AppCompatActivity {
     static final String jenis_user[] = {"Penyewa", "P. Badminton", "P. Futsal", "P. Renang"};
-    private EditText inputUsername, inputPassword, rePassword, inputEmail, inputAddress, inputPhone, namaTempat;
+    private EditText inputName, inputPassword, rePassword, inputEmail, inputAddress, inputPhone, namaTempat;
     private FirebaseAuth auth;
     private DatabaseReference mDatabase;
     private Button daftar;
-    public String email, username, pass, address, phone, tempat, kategori;
+    public String email, name, pass, address, phone, tempat, kategori;
     Spinner spinner;
     CheckBox checkBox;
     Boolean user = true;
@@ -55,7 +53,7 @@ public class DaftarActivity extends AppCompatActivity {
 
         //Variabel
         daftar = findViewById(R.id.daftar_button_daftar);
-        inputUsername = findViewById(R.id.daftar_username_text);
+        inputName = findViewById(R.id.daftar_username_text);
         inputEmail = findViewById(R.id.daftar_email_text);
         inputPassword = findViewById(R.id.daftar_password_text);
         inputAddress = findViewById(R.id.daftar_alamat);
@@ -98,12 +96,11 @@ public class DaftarActivity extends AppCompatActivity {
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                final Intent intent = new Intent(DaftarActivity.this, .class);
 
                 penyedia = new Intent(DaftarActivity.this, PenyediaListLapangan.class);
                 penyewa = new Intent(DaftarActivity.this, UserNotifActivity.class);
                 email = inputEmail.getText().toString();
-                username = inputUsername.getText().toString();
+                name = inputName.getText().toString();
                 pass = inputPassword.getText().toString();
                 phone = inputPhone.getText().toString();
                 address = inputAddress.getText().toString();
@@ -111,7 +108,7 @@ public class DaftarActivity extends AppCompatActivity {
                 kategori = spinner.getSelectedItem().toString();
 
                 if (inputPassword.getText().toString().matches(rePassword.getText().toString())) {
-                    if (inputUsername.getText().toString().matches("")
+                    if (inputName.getText().toString().matches("")
                             || inputEmail.getText().toString().matches("")
                             || inputPhone.getText().toString().matches("")
                             || inputAddress.getText().toString().matches("")
@@ -133,19 +130,14 @@ public class DaftarActivity extends AppCompatActivity {
                                             FirebaseUser user = auth.getCurrentUser();
                                             String uid = user.getUid();
                                             String key = mDatabase.push().getKey();
-                                            //Toast.makeText(DaftarActivity.this, "UID"+uid, Toast.LENGTH_SHORT).show();
+
                                             Map<String, Object> akun = new HashMap<String, Object>();
-                                            akun.put("/users/" + uid + "/username", username);
+                                            akun.put("/users/" + uid + "/name", name);
                                             akun.put("/users/" + uid + "/password", pass);
                                             akun.put("/users/" + uid + "/address", address);
                                             akun.put("/users/" + uid + "/kategori", kategori);
                                             akun.put("/users/" + uid + "/telepon", phone);
-//
-//                                            if (!kategori.equalsIgnoreCase("Penyewa")) {
-//                                                akun.put("/penyedia/" + key + "/userId", uid);
-//                                                akun.put("/penyedia/" + key + "/kategori", kategori);
-//                                                akun.put("/lapangan/" + uid + "/namaTempat", tempat);
-//                                            }
+
 
                                             mDatabase.updateChildren(akun).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
@@ -173,9 +165,9 @@ public class DaftarActivity extends AppCompatActivity {
                                                 FirebaseUser user = auth.getCurrentUser();
                                                 String uid = user.getUid();
                                                 String key = mDatabase.push().getKey();
-                                                //Toast.makeText(DaftarActivity.this, "UID"+uid, Toast.LENGTH_SHORT).show();
+
                                                 Map<String, Object> akun = new HashMap<String, Object>();
-                                                akun.put("/users/" + uid + "/username", username);
+                                                akun.put("/users/" + uid + "/name", name);
                                                 akun.put("/users/" + uid + "/password", pass);
                                                 akun.put("/users/" + uid + "/address", address);
                                                 akun.put("/users/" + uid + "/kategori", kategori);
@@ -184,7 +176,10 @@ public class DaftarActivity extends AppCompatActivity {
                                                 akun.put("/penyedia/" + uid+ "/kategori", kategori);
                                                 akun.put("/penyedia/"+ uid +"/noTelp", phone);
                                                 akun.put("/lapangan/" + uid + "/namaTempat", tempat);
-
+                                                akun.put("/venue/"+kategori.substring(2)+"/"+uid+"/namaTempat", tempat);
+                                                akun.put("/venue/"+kategori.substring(2)+"/"+uid+"/alamat", address);
+                                                akun.put("/venue/"+kategori.substring(2)+"/"+uid+"/uid", uid);
+                                                
                                                 mDatabase.updateChildren(akun).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {

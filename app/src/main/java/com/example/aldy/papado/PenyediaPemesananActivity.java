@@ -13,10 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +27,16 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-<<<<<<< HEAD:app/src/main/java/com/example/aldy/papado/PemesananActivity.java
+
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
     private FirebaseAuth mAuth;
-=======
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<PenyediaListPemesanan> listitem;
->>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab:app/src/main/java/com/example/aldy/papado/PenyediaPemesananActivity.java
+    private String uid;
+    private TextView header;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,12 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = findViewById(R.id.penyedia_nav_view);
+
+        //Auth & UID
         mAuth = FirebaseAuth.getInstance();
+        uid = mAuth.getCurrentUser().getUid();
+
+        //Database
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference();
 
@@ -70,20 +77,17 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-<<<<<<< HEAD:app/src/main/java/com/example/aldy/papado/PemesananActivity.java
-        View view = navigationView.getHeaderView(0);
-        TextView header = view.findViewById(R.id.penyedia_nav_header_text1);
-        String uid = mAuth.getCurrentUser().getUid();
 
-=======
+        //Navigation Drawer
+        view = navigationView.getHeaderView(0);
+        header = view.findViewById(R.id.penyedia_nav_header_text1);
 
-        ////
+        //RecyclerView
         recyclerView = findViewById(R.id.penyedia_recycler_list_pemesananan);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //DUMMY DATA
         listitem = new ArrayList<>();
 
         for (int i = 0; i<20; i++){
@@ -94,7 +98,6 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
         adapter = new PenyediaListPemesananAdapter(listitem,this);
 
         recyclerView.setAdapter(adapter);
->>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab:app/src/main/java/com/example/aldy/papado/PenyediaPemesananActivity.java
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
@@ -138,6 +141,5 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
         Intent jenislapangan = new Intent(PenyediaPemesananActivity.this, PenyediaDaftarLapanganActivity.class);
         startActivity(jenislapangan);
         finish();
-//        super.onBackPressed();
     }
 }

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class UserPengaturanActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private View view;
     private TextView header;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,27 +57,27 @@ public class UserPengaturanActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
         //User terkini
         mUser = mAuth.getCurrentUser();
-        String uid = mUser.getUid();
+        uid = mUser.getUid();
 
 
         NavigationView navigationView = findViewById(R.id.user_nav_view);
+        navigationView.getMenu().findItem(R.id.user_nav_pengaturan).setEnabled(false);
+        navigationView.getMenu().findItem(R.id.user_nav_pengaturan).setChecked(true);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 item.setChecked(true);
                 user_pindahactivity(item);
                 mDrawerLayout.closeDrawers();
-
                 return true;
             }
         });
 
         view = navigationView.getHeaderView(0);
         header = view.findViewById(R.id.user_nav_header_text1);
-        mDatabase.child("users").child(uid).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String username = dataSnapshot.getValue().toString();
@@ -88,33 +90,51 @@ public class UserPengaturanActivity extends AppCompatActivity {
         });
 
         logout = findViewById(R.id.user_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
+        logout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                if (mAuth.getCurrentUser() == null) {
-                    Intent loginActivity = new Intent(UserPengaturanActivity.this, LoginActivity.class);
-                    startActivity(loginActivity);
-                    finish();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        logout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        logout.setBackgroundColor(0x00000000);
+                        mAuth.signOut();
+                        if (mAuth.getCurrentUser() == null) {
+                            Intent loginActivity = new Intent(UserPengaturanActivity.this, LoginActivity.class);
+                            startActivity(loginActivity);
+                            finish();
+                        }
+                        break;
                 }
+                return true;
             }
         });
 
         delacc = findViewById(R.id.user_delacc);
-        delacc.setOnClickListener(new View.OnClickListener() {
+        delacc.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick (View view) {
-                mUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(UserPengaturanActivity.this, "Akun berhasil dihapus", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                Intent intent = new Intent(UserPengaturanActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        delacc.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        delacc.setBackgroundColor(0x00000000);
+                        mUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(UserPengaturanActivity.this, "Akun berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        Intent intent = new Intent (UserPengaturanActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                }
+                return true;
             }
         });
     }

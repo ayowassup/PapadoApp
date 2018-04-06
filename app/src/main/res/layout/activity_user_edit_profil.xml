@@ -34,7 +34,14 @@
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp">
 
+        <Button
+            android:id="@+id/user_edit_foto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ganti foto" />
+
         <EditText
+            android:textColorHint="@color/colorPrimary"
             android:id="@+id/user_edit_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,13 +49,7 @@
             android:hint="Nama..."/>
 
         <EditText
-            android:id="@+id/user_edit_alamat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ini alamat user"
-            android:hint="Alamat..."/>
-
-        <EditText
+            android:textColorHint="@color/colorPrimary"
             android:id="@+id/user_edit_notelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

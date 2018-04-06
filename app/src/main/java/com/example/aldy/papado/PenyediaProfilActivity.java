@@ -8,14 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +24,12 @@ public class PenyediaProfilActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-    private LinearLayout tambah_lap;
     private TextView header, editprofile, alamatPenyedia, namaVenue, namaPemilik,jamBukaTutup,telpPenyedia;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private FirebaseUser user;
+    private FirebaseUser mUser;
     private View view;
-    private String alamat, telepon, jam, pemilik, penyedia;
+    private String uid, alamat, telepon, jam, pemilik, penyedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +42,13 @@ public class PenyediaProfilActivity extends AppCompatActivity {
         alamatPenyedia = findViewById(R.id.penyedia_profile_alamat);
         jamBukaTutup = findViewById(R.id.penyedia_profile_jam);
 
+        //Auth & UID
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference("penyedia");
+        mUser = mAuth.getCurrentUser();
+        uid = mUser.getUid();
 
-        user = mAuth.getCurrentUser();
-        String uid = user.getUid();
-//        Toast.makeText(this, "uid"+uid, Toast.LENGTH_SHORT).show();
+        //Database
+        mDatabase = FirebaseDatabase.getInstance().getReference("penyedia");
 
         mToolbar = findViewById(R.id.penyedia_nav_action);
         setSupportActionBar(mToolbar);
@@ -93,7 +91,6 @@ public class PenyediaProfilActivity extends AppCompatActivity {
                     jamBukaTutup.setText(jam);
                     namaPemilik.setText(pemilik);
                     namaVenue.setText(penyedia);
-                    //Toast.makeText(HalamanSayaActivity.this, telepon+" "+alamat, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -104,16 +101,21 @@ public class PenyediaProfilActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         editprofile = findViewById(R.id.penyedia_profile_edit);
-        editprofile.setOnClickListener(new View.OnClickListener() {
+        editprofile.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (PenyediaProfilActivity.this, PenyediaEditprofilActivity.class);
-                startActivity(intent);
-
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        editprofile.setTextColor(getResources().getColor(R.color.buttondown));
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        editprofile.setTextColor(getResources().getColor(android.R.color.primary_text_light));
+                        Intent intent = new Intent (PenyediaProfilActivity.this, PenyediaEditprofilActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
             }
         });
     }

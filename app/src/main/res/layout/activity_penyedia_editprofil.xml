@@ -29,55 +29,70 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp">
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/penyedia_edit_foto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="edit foto" />
 
         <EditText
             android:id="@+id/penyedia_edit_venue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Nama venue..."
             android:text="Ini nama venue penyedia"
-            android:hint="Nama venue..."/>
+            android:textColorHint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/penyedia_edit_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Nama pemilik..."
             android:text="Ini nama penyedia"
-            android:hint="Nama pemilik..."/>
+            android:textColorHint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/penyedia_edit_alamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Alamat..."
             android:text="Ini alamat penyedia"
-            android:hint="Alamat..."/>
+            android:textColorHint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/penyedia_edit_notelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Nomor telepon..."
             android:text="Ini no telp penyedia"
-            android:hint="Nomor telepon..."/>
+            android:textColorHint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/penyedia_edit_jambuka"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Jam buka..."
             android:text="Ini jam buka penyedia"
-            android:hint="Jam buka..."/>
+            android:textColorHint="@color/colorPrimary" />
+
         <EditText
             android:id="@+id/penyedia_edit_jamtutup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Jam tutup..."
             android:text="Ini jam tutup penyedia"
-            android:hint="Jam tutup..."/>
+            android:textColorHint="@color/colorPrimary" />
+
         <Button
             android:id="@+id/penyedia_save_editprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="simpan" />
+            android:text="simpan"
+            android:textColorHint="@color/colorPrimary" />
     </LinearLayout>
 
 </LinearLayout>

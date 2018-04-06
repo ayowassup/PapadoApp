@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.text.TextUtils;
-import android.widget.TextView;
 
 //Berkaitan dengan login
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -30,11 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
     private EditText inputUsername, inputPassword;
     private Button masuk;
-    private FirebaseAuth auth;
+    private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authListener;
     private DatabaseReference mDatabase;
-    private EditText username;
-    private EditText pass;
+    private EditText username, pass;
 
 
     @Override
@@ -42,16 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Instance auth
-        auth = FirebaseAuth.getInstance();
+        //Instance mAuth
+        mAuth = FirebaseAuth.getInstance();
 
-        // Lihat user terkini
-//        if (auth.getCurrentUser() != null) {
-//            startActivity(new Intent(LoginActivity.this, PenyediaMainActivity.class));
-//            finish();
-//        }
-
-        auth = FirebaseAuth.getInstance();
         inputUsername = findViewById(R.id.login_username_text);
         inputPassword = findViewById(R.id.login_password_text);
         masuk = findViewById(R.id.login_button_masuk);
@@ -65,40 +54,37 @@ public class LoginActivity extends AppCompatActivity {
                 String email = inputUsername.getText().toString();
                 final String password = inputPassword.getText().toString();
                         if (email.matches("") || password.matches("")) {
-                            //ini kalau username kosong atau pass kosong
+                            //ini kalau name kosong atau pass kosong
                             Toast.makeText(LoginActivity.this, "Masukkan data dengan benar", Toast.LENGTH_LONG).show();
                         } else {
                             //Otentikasi
-                            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
+                            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
                                     LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             // Status otentikasi, apabila berhasil dan gagal
                                             if (!task.isSuccessful()) {
-                                                // there was an error
                                                 if (password.length() < 6) {
                                                     inputPassword.setError("Password kurang dari 6 karakter");
                                                 } else {
                                                     Toast.makeText(LoginActivity.this, "Login gagal!", Toast.LENGTH_LONG).show();
                                                 }
                                             } else {
-                                                String uid = auth.getCurrentUser().getUid();
+                                                String uid = mAuth.getCurrentUser().getUid();
                                                 mDatabase.child("users").child(uid).child("kategori").addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         String jenis = dataSnapshot.getValue().toString();
-                                                        Toast.makeText(LoginActivity.this, "Jenis User " + jenis, Toast.LENGTH_SHORT).show();
                                                         if (jenis.equalsIgnoreCase("Penyewa")) {
                                                             Intent penyewa = new Intent(LoginActivity.this, UserNotifActivity.class);
                                                             penyewa.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                             startActivity(penyewa);
                                                         } else {
-                                                            Intent penyedia = new Intent(LoginActivity.this, PenyediaListPemesanan.class);
+                                                            Intent penyedia = new Intent(LoginActivity.this, PenyediaDaftarLapanganActivity.class);
                                                             penyedia.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                             startActivity(penyedia);
                                                         }
                                                     }
-
                                                     @Override
                                                     public void onCancelled(DatabaseError databaseError) {
 
@@ -142,7 +128,6 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, DaftarActivity.class);
                 startActivity(intent);
                 //kode kalau tombol daftar diklik
-
             }
         });
     }

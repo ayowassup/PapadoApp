@@ -21,8 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class PenyediaTambahlapActivity extends AppCompatActivity {
     private Button simpan;
-    FirebaseAuth auth;
-    DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private DatabaseReference mDatabase;
     private EditText inputNama, inputUkuran, inputHarga;
     private String namaLap, ukuran, harga;
     Intent mainLap;
@@ -32,8 +33,9 @@ public class PenyediaTambahlapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_penyedia_tambahlap);
+
         //FirebaseAuth
-        auth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         //Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -49,12 +51,10 @@ public class PenyediaTambahlapActivity extends AppCompatActivity {
                 namaLap = inputNama.getText().toString();
                 ukuran = inputUkuran.getText().toString();
                 harga = inputHarga.getText().toString();
-                mainLap = new Intent(PenyediaTambahlapActivity.this,PenyediaListLapangan.class);
+                mainLap = new Intent(PenyediaTambahlapActivity.this,PenyediaDaftarLapanganActivity.class);
 
-                //Auth
-                auth = FirebaseAuth.getInstance();
-                FirebaseUser user = auth.getCurrentUser();
-                String uid = user.getUid();
+                mUser = mAuth.getCurrentUser();
+                String uid = mUser.getUid();
                 String key = mDatabase.push().getKey();
 
                 Map <String, Object> tambahLap = new HashMap<String, Object>();

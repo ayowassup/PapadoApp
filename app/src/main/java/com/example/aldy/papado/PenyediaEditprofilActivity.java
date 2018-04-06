@@ -1,6 +1,8 @@
 package com.example.aldy.papado;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,43 +11,44 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.vansuita.pickimage.bean.PickResult;
+import com.vansuita.pickimage.bundle.PickSetup;
+import com.vansuita.pickimage.dialog.PickImageDialog;
+import com.vansuita.pickimage.listeners.IPickResult;
+
 
 import java.util.HashMap;
 
 public class PenyediaEditprofilActivity extends AppCompatActivity {
     private Button save;
-    private EditText namaVenue, namaPemilik, alamatPenyedia, telpPenyedia, jamBukaTutup;
-    private String nama, pemilik, alamat, telepon, jam;
+    private EditText namaVenue, namaPemilik, alamatPenyedia, telpPenyedia, jamBuka, jamTutup;
+    private String nama, pemilik, alamat, telepon, buka, tutup;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private FirebaseDatabase mDatabase;
-    private DatabaseReference databaseReference;
+    private DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penyedia_editprofil);
-<<<<<<< HEAD
         namaVenue = findViewById(R.id.penyedia_edit_venue);
         namaPemilik = findViewById(R.id.penyedia_edit_nama);
         alamatPenyedia = findViewById(R.id.penyedia_edit_alamat);
         telpPenyedia = findViewById(R.id.penyedia_edit_notelp);
-        jamBukaTutup = findViewById(R.id.penyedia_edit_jam);
-        save = findViewById(R.id.penyedia_save_edit);
+        jamBuka = findViewById(R.id.penyedia_edit_jambuka);
+        jamTutup = findViewById(R.id.penyedia_edit_jamtutup);
+        save = findViewById(R.id.penyedia_save_editprofile);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
-        databaseReference = mDatabase.getReference();
+        mRef = mDatabase.getReference();
 
         user = mAuth.getCurrentUser();
 
@@ -54,12 +57,13 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(PenyediaEditprofilActivity.this, HalamanSayaActivity.class);
+                final Intent intent = new Intent(PenyediaEditprofilActivity.this, PenyediaDaftarLapanganActivity.class);
                 nama = namaVenue.getText().toString();
                 pemilik = namaPemilik.getText().toString();
                 alamat = alamatPenyedia.getText().toString();
                 telepon = telpPenyedia.getText().toString();
-                jam = jamBukaTutup.getText().toString();
+                buka = jamBuka.getText().toString();
+                tutup = jamTutup.getText().toString();
                 String uid = user.getUid();
 
                 HashMap<String, Object> editProfile = new HashMap<String, Object>();
@@ -67,9 +71,10 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
                 editProfile.put("/penyedia/"+uid+"/namaPemilik", pemilik);
                 editProfile.put("/penyedia/"+uid+"/alamat", alamat);
                 editProfile.put("/penyedia/"+uid+"/noTelp",telepon);
-                editProfile.put("/penyedia/"+uid+"/jamBukaTutup", jam);
+                editProfile.put("/penyedia/"+uid+"/jamBuka", buka);
+                editProfile.put("/penyedia/"+uid+"/jamTutup", tutup);
 
-                databaseReference.updateChildren(editProfile).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mRef.updateChildren(editProfile).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(PenyediaEditprofilActivity.this, "Berhasil mengupdate profil", Toast.LENGTH_SHORT).show();
@@ -77,17 +82,6 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-
-=======
-        save = findViewById(R.id.penyedia_save_editprofile);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kalau save diklik
-                Intent intent = new Intent(PenyediaEditprofilActivity.this, PenyediaProfilActivity.class);
-                startActivity(intent);
-                finish();
->>>>>>> 1fa3ecf94a3840591ce2b161837967ae49c886ab
             }
         });
     }

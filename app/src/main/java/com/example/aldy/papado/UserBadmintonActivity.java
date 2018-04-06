@@ -14,6 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +28,26 @@ public class UserBadmintonActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-
+    private FirebaseAuth mAuth;
+    private DatabaseReference mRef;
+    private FirebaseDatabase mDatabase;
     private RecyclerView recyclerView;
     private UserListVenueAdapter adapter;
-    private List<UserListVenue> listVenues = new ArrayList<>();
+    private List<UserListVenue> listVenues;
+    private String alamatVenue, namaVenue, uidVenue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_badminton);
+
+        //Auth & User
+        mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
+
+        //Database
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference();
 
         mToolbar = findViewById(R.id.user_nav_action);
         setSupportActionBar(mToolbar);
@@ -57,21 +75,37 @@ public class UserBadmintonActivity extends AppCompatActivity {
         /////
         recyclerView = findViewById(R.id.user_recycler_list_venue_badminton);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayout = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayout);
+        linearLayout.setStackFromEnd(true);
 
-        for (int i = 0;i<20;i++){
-            UserListVenue listVenue = new UserListVenue("venue badminton"+i, "ub");
-            listVenues.add(listVenue);
-        }
-
-        adapter = new UserListVenueAdapter(listVenues, this);
-        recyclerView.setAdapter(adapter);
-
-        adapter.setOnItemClickListener(new UserListVenueAdapter.OnItemClickListener() {
+        listVenues = new ArrayList<>();
+        mRef.child("venue").child("Badminton").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(UserBadmintonActivity.this, UserPemesananLapanganActivity.class);
-                startActivity(intent);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    alamatVenue = postSnapshot.child("alamat").getValue(String.class);
+                    namaVenue = postSnapshot.child("namaTempat").getValue(String.class);
+                    uidVenue = postSnapshot.child("uid").getValue(String.class);
+                    listVenues.add(new UserListVenue(namaVenue, alamatVenue));
+                }
+                adapter = new UserListVenueAdapter(listVenues, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                adapter.setOnItemClickListener(new UserListVenueAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Intent intent = new Intent(UserBadmintonActivity.this, UserPemesananLapanganActivity.class);
+                        intent.putExtra("uid",uidVenue);
+                        intent.putExtra("namavenue", namaVenue);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
 

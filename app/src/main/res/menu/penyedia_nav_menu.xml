@@ -4,7 +4,7 @@
         android:id="@+id/penyedia_nav_profile"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/penyedia_nav_halamansaya"
+            android:id="@+id/penyedia_nav_profil"
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Profil Saya" />
         <item
@@ -21,7 +21,7 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/penyedia_nav_jenislapangan"
+            android:id="@+id/penyedia_nav_daftarlapangan"
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Daftar Lapangan" />
     </group>

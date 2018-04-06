@@ -11,10 +11,6 @@
             android:id="@+id/user_nav_pemesanan"
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Pemesanan" />
-        <item
-            android:id="@+id/user_nav_riwayat"
-            android:icon="@drawable/ic_account_circle_black_48dp"
-            android:title="Riwayat" />
     </group>
     <group
         android:id="@+id/user_nav_group2"
@@ -36,4 +32,4 @@
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Pengaturan" />
     </group>
-</menu>
+</>

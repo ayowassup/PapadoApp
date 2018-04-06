@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/user_drawer_layout"
     tools:context="com.example.aldy.papado.UserPengaturanActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,40 +17,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <!--<ListView-->
-        <!--android:id="@+id/penyedia_list_lapangan"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--</ListView>-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true">
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <LinearLayout
                     android:id="@+id/user_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
 
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_account_circle_black_48dp" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="2dp"
+                        android:src="@mipmap/logout" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Logout" />
+                        android:layout_marginLeft="8dp"
+                        android:text="Logout"
+                        android:textColor="@color/putih"
+                        android:textSize="20sp" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/user_delacc"
                     android:layout_width="match_parent"
@@ -58,20 +58,21 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_account_circle_black_48dp" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="2dp"
+                        android:src="@mipmap/hapus_akun" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delete Account" />
+                        android:layout_marginLeft="8dp"
+                        android:text="Delete Account"
+                        android:textColor="@color/putih"
+                        android:textSize="20sp" />
                 </LinearLayout>
-
             </LinearLayout>
-
         </RelativeLayout>
-
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

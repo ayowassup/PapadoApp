@@ -11,6 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:padding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -48,6 +49,7 @@
                                 android:src="@drawable/ic_account_circle_black_48dp" />
 
                             <TextView
+                                android:textColor="@color/putih"
                                 android:id="@+id/penyedia_list_pemesanan_namalap"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -66,6 +68,7 @@
                                 android:src="@drawable/ic_account_circle_black_48dp" />
 
                             <TextView
+                                android:textColor="@color/putih"
                                 android:id="@+id/penyedia_list_pemesanan_tanggal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -84,6 +87,7 @@
                                 android:src="@drawable/ic_account_circle_black_48dp" />
 
                             <TextView
+                                android:textColor="@color/putih"
                                 android:id="@+id/penyedia_list_pemesanan_nama"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -102,6 +106,7 @@
                                 android:src="@drawable/ic_account_circle_black_48dp" />
 
                             <TextView
+                                android:textColor="@color/putih"
                                 android:id="@+id/penyedia_list_pemesanan_waktu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -120,6 +125,7 @@
                                 android:src="@drawable/ic_account_circle_black_48dp" />
 
                             <TextView
+                                android:textColor="@color/putih"
                                 android:id="@+id/penyedia_list_pemesanan_notelp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
