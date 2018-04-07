@@ -74,6 +74,20 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+        View view = navigationView.getHeaderView(0);
+        final TextView header = view.findViewById(R.id.penyedia_nav_header_text1);
+        mRef.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String username = dataSnapshot.getValue().toString();
+                header.setText(username);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         //RecyclerView
         recyclerView = findViewById(R.id.penyedia_recycler_list_lapangan);
@@ -115,7 +129,7 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
 
     public void penyedia_pindahactivity (MenuItem menuItem){
         switch (menuItem.getItemId()) {
-            case R.id.penyedia_nav_halamansaya:
+            case R.id.penyedia_nav_daftarlapangan:
                 Intent halamansaya = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
@@ -128,11 +142,6 @@ public class PenyediaDaftarLapanganActivity extends AppCompatActivity {
             case R.id.penyedia_nav_pengaturan:
                 Intent pengaturan = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaPengaturanActivity.class);
                 startActivity(pengaturan);
-                finish();
-                break;
-            case R.id.penyedia_nav_jenislapangan:
-                Intent jenislapangan = new Intent(PenyediaDaftarLapanganActivity.this, PenyediaDaftarLapanganActivity.class);
-                startActivity(jenislapangan);
                 finish();
                 break;
             case R.id.penyedia_nav_jadwal:

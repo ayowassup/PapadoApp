@@ -24,12 +24,12 @@ public class PenyediaProfilActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-    private TextView header, editprofile, alamatPenyedia, namaVenue, namaPemilik,jamBukaTutup,telpPenyedia;
+    private TextView header, emailPenyedia, editprofile, alamatPenyedia, namaVenue, namaPemilik,jamBukaTutup,telpPenyedia;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private FirebaseUser mUser;
     private View view;
-    private String uid, alamat, telepon, jam, pemilik, penyedia;
+    private String uid, email, alamat, telepon, jam, pemilik, penyedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,8 @@ public class PenyediaProfilActivity extends AppCompatActivity {
         telpPenyedia = findViewById(R.id.penyedia_profile_notelp);
         alamatPenyedia = findViewById(R.id.penyedia_profile_alamat);
         jamBukaTutup = findViewById(R.id.penyedia_profile_jam);
+        emailPenyedia = findViewById(R.id.penyedia_profile_email);
+
 
         //Auth & UID
         mAuth = FirebaseAuth.getInstance();
@@ -48,7 +50,7 @@ public class PenyediaProfilActivity extends AppCompatActivity {
         uid = mUser.getUid();
 
         //Database
-        mDatabase = FirebaseDatabase.getInstance().getReference("penyedia");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mToolbar = findViewById(R.id.penyedia_nav_action);
         setSupportActionBar(mToolbar);
@@ -76,22 +78,32 @@ public class PenyediaProfilActivity extends AppCompatActivity {
 
         view = navigationView.getHeaderView(0);
         header = view.findViewById(R.id.penyedia_nav_header_text1);
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    PenyediaProfil profil = (PenyediaProfil) postSnapshot.getValue(PenyediaProfil.class);
-                    telepon = profil.getNoTelp();
-                    alamat = profil.getAlamat();
-                    jam = profil.getJamBukaTutup();
-                    pemilik = profil.getNamaPemilik();
-                    penyedia = profil.getNamaVenue();
+                String nama = dataSnapshot.getValue().toString();
+                header.setText(nama);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mDatabase.child("penyedia").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                    telepon = dataSnapshot.child("noTelp").getValue(String.class);
+                    alamat = dataSnapshot.child("alamat").getValue(String.class);
+                    pemilik = dataSnapshot.child("namaPemilik").getValue(String.class);
+                    jam = dataSnapshot.child("jamBukaTutup").getValue(String.class);
+                    penyedia = dataSnapshot.child("namaVenue").getValue(String.class);
+                    email = dataSnapshot.child("email").getValue(String.class);
                     telpPenyedia.setText(telepon);
                     alamatPenyedia.setText(alamat);
                     jamBukaTutup.setText(jam);
                     namaPemilik.setText(pemilik);
                     namaVenue.setText(penyedia);
-                }
+                    emailPenyedia.setText(email);
 
             }
 
@@ -122,14 +134,9 @@ public class PenyediaProfilActivity extends AppCompatActivity {
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.penyedia_nav_halamansaya:
+            case R.id.penyedia_nav_profil:
                 Intent halamansaya = new Intent(PenyediaProfilActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
-                finish();
-                break;
-            case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(PenyediaProfilActivity.this, PenyediaPemesananActivity.class);
-                startActivity(pemesanan);
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
@@ -137,7 +144,7 @@ public class PenyediaProfilActivity extends AppCompatActivity {
                 startActivity(pengaturan);
                 finish();
                 break;
-            case R.id.penyedia_nav_jenislapangan:
+            case R.id.penyedia_nav_daftarlapangan:
                 Intent jenislapangan = new Intent(PenyediaProfilActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
                 finish();
@@ -147,6 +154,7 @@ public class PenyediaProfilActivity extends AppCompatActivity {
                 startActivity(jadwal);
                 finish();
                 break;
+
         }
     }
     @Override

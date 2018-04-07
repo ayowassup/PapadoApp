@@ -67,7 +67,6 @@ public class UserEditProfilActivity extends AppCompatActivity implements IPickRe
         setContentView(R.layout.activity_user_edit_profil);
 
         nama = findViewById(R.id.user_edit_nama);
-        email = findViewById(R.id.user_edit_alamat);
         notelp = findViewById(R.id.user_edit_notelp);
 
         //Auth & User

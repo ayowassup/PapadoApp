@@ -77,6 +77,17 @@ public class UserProfilActivity extends AppCompatActivity {
 
         view = navigationView.getHeaderView(0);
         header = findViewById(R.id.user_nav_header_text1);
+        mDatabase.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nama = dataSnapshot.getValue().toString();
+                header.setText(nama);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("users").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

@@ -83,11 +83,6 @@ public class PenyediaJadwalTambahActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //Variabel
-//                jamAwal = inputJamAwal.getText().toString();
-//                jamAkhir = inputJamAkhir.getText().toString();
-
                 //Auth
                 auth = FirebaseAuth.getInstance();
                 FirebaseUser user = auth.getCurrentUser();
@@ -106,10 +101,6 @@ public class PenyediaJadwalTambahActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-                //kalau save diklik
-//                Intent intent = new Intent(PenyediaJadwalTambahActivity.this, PenyediaJadwalActivity.class);
-//                startActivity(intent);
-//                finish();
             }
         });
 

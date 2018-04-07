@@ -179,7 +179,7 @@ public class DaftarActivity extends AppCompatActivity {
                                                 akun.put("/venue/"+kategori.substring(2)+"/"+uid+"/namaTempat", tempat);
                                                 akun.put("/venue/"+kategori.substring(2)+"/"+uid+"/alamat", address);
                                                 akun.put("/venue/"+kategori.substring(2)+"/"+uid+"/uid", uid);
-                                                
+
                                                 mDatabase.updateChildren(akun).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {

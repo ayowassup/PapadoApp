@@ -32,4 +32,4 @@
             android:icon="@drawable/ic_account_circle_black_48dp"
             android:title="Pengaturan" />
     </group>
-</>
+</menu>

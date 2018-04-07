@@ -5,7 +5,7 @@
     android:id="@+id/penyedia_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aldy.papado.PenyediaPengaturanActivity">
+    tools:context="com.example.aldy.papado.PenyediaProfilActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,66 +17,153 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:padding="8dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/penyedia_logout"
+                <ImageView
+                    android:id="@+id/penyedia_profile_foto"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:src="@drawable/dummy_photo_profile" />
+
+                <TextView
+                    android:id="@+id/penyedia_profile_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textStyle="bold"
+                    android:text="Ini nama venue"
+                    android:textSize="32sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:padding="2dp"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@mipmap/logout" />
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <TextView
-                        android:layout_marginLeft="8dp"
-                        android:textSize="20sp"
-                        android:textColor="@color/putih"
+                        android:id="@+id/penyedia_profile_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Logout" />
+                        android:layout_marginLeft="8dp"
+                        android:text="ini email" />
                 </LinearLayout>
-
                 <LinearLayout
-                    android:id="@+id/penyedia_delacc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:padding="2dp"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@mipmap/hapus_akun"/>
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
 
                     <TextView
-                        android:textColor="@color/putih"
-                        android:layout_marginLeft="8dp"
-                        android:textSize="20sp"
+                        android:id="@+id/penyedia_profile_alamat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delete Account" />
+                        android:layout_marginLeft="8dp"
+                        android:text="ini alamat" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/penyedia_profile_ownername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="ini nama pemilik" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/penyedia_profile_jam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="ini jam buka dan tutup" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/penyedia_profile_notelp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="ini no telepon" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_account_circle_black_48dp" />
+
+                    <TextView
+                        android:id="@+id/penyedia_profile_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="16dp"
+                        android:textColor="@android:color/secondary_text_light"
+                        android:text="edit profil" />
+                </LinearLayout>
+
 
             </LinearLayout>
-
-        </RelativeLayout>
-
+        </ScrollView>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
@@ -85,7 +172,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/penyedia_nav_header"
-        app:menu="@menu/penyedia_nav_menu">
+        app:menu="@menu/penyedia_nav_menu"></android.support.design.widget.NavigationView>
 
-    </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

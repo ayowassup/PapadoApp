@@ -71,8 +71,7 @@ public class PenyediaEditprofilActivity extends AppCompatActivity {
                 editProfile.put("/penyedia/"+uid+"/namaPemilik", pemilik);
                 editProfile.put("/penyedia/"+uid+"/alamat", alamat);
                 editProfile.put("/penyedia/"+uid+"/noTelp",telepon);
-                editProfile.put("/penyedia/"+uid+"/jamBuka", buka);
-                editProfile.put("/penyedia/"+uid+"/jamTutup", tutup);
+                editProfile.put("/penyedia/"+uid+"/jamBukaTutup", (buka+" - "+tutup));
 
                 mRef.updateChildren(editProfile).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

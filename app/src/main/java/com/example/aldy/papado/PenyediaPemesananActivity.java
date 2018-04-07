@@ -12,10 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -34,8 +38,8 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<PenyediaListPemesanan> listitem;
-    private String uid;
-    private TextView header;
+    private String uid, uidPemesan, orderId;
+    private TextView header, namaLapangan, tanggalPesan, namaPemesan, waktuPesan, noTelpPesan;
     private View view;
 
     @Override
@@ -64,6 +68,7 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference();
 
+
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -81,6 +86,17 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
         //Navigation Drawer
         view = navigationView.getHeaderView(0);
         header = view.findViewById(R.id.penyedia_nav_header_text1);
+        mRef.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nama = dataSnapshot.getValue().toString();
+                header.setText(nama);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         //RecyclerView
         recyclerView = findViewById(R.id.penyedia_recycler_list_pemesananan);
@@ -90,26 +106,55 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
 
         listitem = new ArrayList<>();
 
-        for (int i = 0; i<20; i++){
-            PenyediaListPemesanan listitems = new PenyediaListPemesanan("aldy"+i,"12 juni", "aldy yang tanpan", "01:00 - 02:00", "082257693850");
-            listitem.add(listitems);
-        }
+        mRef.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String namaLapangan = postSnapshot.child("namaLapangan").getValue(String.class);
+                    String namaPemesan = postSnapshot.child("namaPemesan").getValue(String.class);
+                    String tanggalPesan = postSnapshot.child("tanggalPesan").getValue(String.class);
+                    String jamPesan = postSnapshot.child("jamPesan").getValue(String.class);
+                    String teleponPemesan = postSnapshot.child("telpPemesan").getValue(String.class);
+                    listitem.add(new PenyediaListPemesanan(namaLapangan, tanggalPesan, namaPemesan, jamPesan,teleponPemesan));
+                }
+                adapter = new PenyediaListPemesananAdapter(listitem, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
 
-        adapter = new PenyediaListPemesananAdapter(listitem,this);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        recyclerView.setAdapter(adapter);
+            }
+        });
+        mRef.child("pemesanan").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String pemesan = postSnapshot.child("namaPemesan").getValue(String.class);
+                    String telepon = postSnapshot.child("telpPemesan").getValue(String.class);
+                    String lapangan = postSnapshot.child("namaLapangan").getValue(String.class);
+                    String waktu = postSnapshot.child("jamPesan").getValue(String.class);
+                    String tanggal = postSnapshot.child("tanggalPesan").getValue(String.class);
+                    listitem.add(new PenyediaListPemesanan(lapangan, tanggal, pemesan, waktu, telepon));
+                }
+                adapter = new PenyediaListPemesananAdapter(listitem, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.penyedia_nav_halamansaya:
+            case R.id.penyedia_nav_profil:
                 Intent halamansaya = new Intent(PenyediaPemesananActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
-                finish();
-                break;
-            case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(PenyediaPemesananActivity.this, PenyediaPemesananActivity.class);
-                startActivity(pemesanan);
                 finish();
                 break;
             case R.id.penyedia_nav_pengaturan:
@@ -117,7 +162,7 @@ public class PenyediaPemesananActivity extends AppCompatActivity {
                 startActivity(pengaturan);
                 finish();
                 break;
-            case R.id.penyedia_nav_jenislapangan:
+            case R.id.penyedia_nav_daftarlapangan:
                 Intent jenislapangan = new Intent(PenyediaPemesananActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
                 finish();

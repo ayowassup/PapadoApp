@@ -5,14 +5,15 @@ package com.example.aldy.papado;
  */
 
 public class PenyediaProfil {
-    private String alamat, namaVenue, namaPemilik, jamBukaTutup, noTelp;
+    private String alamat, email, namaVenue, namaPemilik, jamBukaTutup, noTelp;
 
-    public PenyediaProfil(String alamat, String namaVenue, String namaPemilik, String jamBukaTutup, String noTelp) {
+    public PenyediaProfil(String alamat, String email, String namaVenue, String namaPemilik, String jamBukaTutup, String noTelp) {
         this.alamat = alamat;
         this.namaVenue = namaVenue;
         this.namaPemilik = namaPemilik;
         this.jamBukaTutup = jamBukaTutup;
         this.noTelp = noTelp;
+        this.email = email;
     }
 
     public PenyediaProfil() {
@@ -56,5 +57,13 @@ public class PenyediaProfil {
 
     public void setNoTelp(String noTelp) {
         this.noTelp = noTelp;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

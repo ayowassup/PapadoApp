@@ -150,11 +150,6 @@ public class UserPengaturanActivity extends AppCompatActivity {
                 startActivity(pemesanan);
                 finish();
                 break;
-            case R.id.user_nav_riwayat:
-                Intent riwayat = new Intent(UserPengaturanActivity.this, UserRiwayatActivity.class);
-                startActivity(riwayat);
-                finish();
-                break;
             case R.id.user_nav_badminton:
                 Intent badminton = new Intent(UserPengaturanActivity.this, UserBadmintonActivity.class);
                 startActivity(badminton);

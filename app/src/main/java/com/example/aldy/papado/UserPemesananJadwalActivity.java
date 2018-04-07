@@ -147,6 +147,13 @@ public class UserPemesananJadwalActivity extends AppCompatActivity {
 
                         pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/uidPemesan", uid);
                         pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/orderId", key);
+                        pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/namaPemesan", namaPemesan);
+                        pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/telpPemesan", telpuser);
+                        pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/namaLapangan", namaLapangan);
+                        pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/jamPesan", (jam1+" - "+jam2));
+                        pemesanan.put("orderPenyedia/"+uidLapangan+"/"+key+"/tanggalPesan", tanggalPesan);
+
+
 
                         mRef.updateChildren(pemesanan).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

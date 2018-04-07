@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,8 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private List<PenyediaListJadwal> listitem;
     private String uid;
+    private View view;
+    private TextView header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,21 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
             }
         });
 
+        //NavigationView
+        view = navigationView.getHeaderView(0);
+        header = view.findViewById(R.id.penyedia_nav_header_text1);
+        mRef.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nama = dataSnapshot.getValue().toString();
+                header.setText(nama);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         //RecyclerView
         recyclerView = findViewById(R.id.penyedia_recycler_list_jadwal);
         recyclerView.setNestedScrollingEnabled(false);
@@ -114,7 +132,7 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.penyedia_nav_halamansaya:
+            case R.id.penyedia_nav_profil:
                 Intent halamansaya = new Intent(PenyediaJadwalActivity.this, PenyediaProfilActivity.class);
                 startActivity(halamansaya);
                 finish();
@@ -129,14 +147,9 @@ public class PenyediaJadwalActivity extends AppCompatActivity {
                 startActivity(pengaturan);
                 finish();
                 break;
-            case R.id.penyedia_nav_jenislapangan:
+            case R.id.penyedia_nav_daftarlapangan:
                 Intent jenislapangan = new Intent(PenyediaJadwalActivity.this, PenyediaDaftarLapanganActivity.class);
                 startActivity(jenislapangan);
-                finish();
-                break;
-            case R.id.penyedia_nav_jadwal:
-                Intent jadwal= new Intent(PenyediaJadwalActivity.this, PenyediaJadwalActivity.class);
-                startActivity(jadwal);
                 finish();
                 break;
         }

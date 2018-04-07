@@ -10,12 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.List;
 
     public class PenyediaListPemesananAdapter extends RecyclerView.Adapter<PenyediaListPemesananAdapter.ViewHolder> {
         private List<PenyediaListPemesanan> listPemesanans;
         private Context context;
-
+        private DatabaseReference mDatabase;
+        private FirebaseAuth mAuth;
         public PenyediaListPemesananAdapter(List<PenyediaListPemesanan> listPemesanans, Context context) {
             this.listPemesanans = listPemesanans;
             this.context = context;
@@ -59,6 +63,7 @@ import java.util.List;
                 public void onClick(View view) {
                     //kalau tolak
                     Toast.makeText(context, "Pesanan ditolak", Toast.LENGTH_SHORT).show();
+
                 }
             });
             holder.yes.setOnClickListener(new View.OnClickListener() {

@@ -55,9 +55,6 @@ public class UserRiwayatActivity extends AppCompatActivity {
                 startActivity(pemesanan);
                 finish();
                 break;
-            case R.id.user_nav_riwayat:
-                mDrawerLayout.closeDrawers();
-                break;
             case R.id.user_nav_badminton:
                 Intent badminton = new Intent(UserRiwayatActivity.this, UserBadmintonActivity.class);
                 startActivity(badminton);

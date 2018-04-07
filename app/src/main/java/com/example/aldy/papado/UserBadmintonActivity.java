@@ -12,7 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +37,8 @@ public class UserBadmintonActivity extends AppCompatActivity {
     private UserListVenueAdapter adapter;
     private List<UserListVenue> listVenues;
     private String alamatVenue, namaVenue, uidVenue;
+    private View view;
+    private TextView header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,22 @@ public class UserBadmintonActivity extends AppCompatActivity {
             }
         });
 
-        /////
+
+        view = navigationView.getHeaderView(0);
+        header = findViewById(R.id.user_nav_header_text1);
+        mRef.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nama = dataSnapshot.getValue().toString();
+                header.setText(nama);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //Recycler View
         recyclerView = findViewById(R.id.user_recycler_list_venue_badminton);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayout = new LinearLayoutManager(getApplicationContext());
@@ -120,11 +139,6 @@ public class UserBadmintonActivity extends AppCompatActivity {
             case R.id.user_nav_pemesanan:
                 Intent pemesanan = new Intent(UserBadmintonActivity.this, UserNotifActivity.class);
                 startActivity(pemesanan);
-                finish();
-                break;
-            case R.id.user_nav_riwayat:
-                Intent riwayat = new Intent(UserBadmintonActivity.this, UserRiwayatActivity.class);
-                startActivity(riwayat);
                 finish();
                 break;
             case R.id.user_nav_badminton:

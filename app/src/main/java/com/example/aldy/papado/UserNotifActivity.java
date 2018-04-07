@@ -126,8 +126,6 @@ public class UserNotifActivity extends AppCompatActivity {
             }
         });
 
-        adapter = new UserListNotifAdapter(list, this);
-        recyclerView.setAdapter(adapter);
     }
 
     public void user_pindahactivity (MenuItem menuItem){
@@ -139,11 +137,6 @@ public class UserNotifActivity extends AppCompatActivity {
                 break;
             case R.id.user_nav_pemesanan:
                 mDrawerLayout.closeDrawers();
-                break;
-            case R.id.user_nav_riwayat:
-                Intent riwayat = new Intent(UserNotifActivity.this, UserRiwayatActivity.class);
-                startActivity(riwayat);
-                finish();
                 break;
             case R.id.user_nav_badminton:
                 Intent badminton = new Intent(UserNotifActivity.this, UserBadmintonActivity.class);

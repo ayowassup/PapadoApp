@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //Untuk akun
@@ -19,6 +20,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PenyediaPengaturanActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -27,6 +33,10 @@ public class PenyediaPengaturanActivity extends AppCompatActivity {
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private LinearLayout logout, delacc;
+    private DatabaseReference mDatabase;
+    private TextView header;
+    private View view;
+    private String uid;
 
 
     @Override
@@ -47,9 +57,11 @@ public class PenyediaPengaturanActivity extends AppCompatActivity {
 
         //Auth Instance
         mAuth = FirebaseAuth.getInstance();
-
-        //User terkini
         mUser = mAuth.getCurrentUser();
+        uid = mUser.getUid();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         NavigationView navigationView = findViewById(R.id.penyedia_nav_view);
         navigationView.setNavigationItemSelectedListener(
@@ -62,6 +74,19 @@ public class PenyediaPengaturanActivity extends AppCompatActivity {
                     }
                 });
 
+        view = navigationView.getHeaderView(0);
+        header = findViewById(R.id.user_nav_header_text1);
+        mDatabase.child("users").child(uid).child("nama").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nama = dataSnapshot.getValue().toString();
+                header.setText(nama);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         logout = findViewById(R.id.penyedia_logout);
         logout.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -116,33 +141,28 @@ public class PenyediaPengaturanActivity extends AppCompatActivity {
 
     public void penyedia_pindahactivity(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.penyedia_nav_halamansaya:
-                Intent halamansaya = new Intent(PenyediaPengaturanActivity.this, PenyediaProfilActivity.class);
-                startActivity(halamansaya);
-                finish();
-                break;
-            case R.id.penyedia_nav_pemesanan:
-                Intent pemesanan = new Intent(PenyediaPengaturanActivity.this, PenyediaPemesananActivity.class);
-                startActivity(pemesanan);
-                finish();
-                break;
-            case R.id.penyedia_nav_pengaturan:
-                Intent pengaturan = new Intent(PenyediaPengaturanActivity.this, PenyediaPengaturanActivity.class);
-                startActivity(pengaturan);
-                finish();
-                break;
-            case R.id.penyedia_nav_jenislapangan:
-                Intent jenislapangan = new Intent(PenyediaPengaturanActivity.this, PenyediaDaftarLapanganActivity.class);
-                startActivity(jenislapangan);
-                finish();
-                break;
-            case R.id.penyedia_nav_jadwal:
-                Intent jadwal= new Intent(PenyediaPengaturanActivity.this, PenyediaJadwalActivity.class);
-                startActivity(jadwal);
-                finish();
-                break;
+                case R.id.penyedia_nav_profil:
+                    Intent halamansaya = new Intent(PenyediaPengaturanActivity.this, PenyediaProfilActivity.class);
+                    startActivity(halamansaya);
+                    finish();
+                    break;
+                case R.id.penyedia_nav_pemesanan:
+                    Intent pemesanan = new Intent(PenyediaPengaturanActivity.this, PenyediaPemesananActivity.class);
+                    startActivity(pemesanan);
+                    finish();
+                    break;
+                case R.id.penyedia_nav_daftarlapangan:
+                    Intent jenislapangan = new Intent(PenyediaPengaturanActivity.this, PenyediaDaftarLapanganActivity.class);
+                    startActivity(jenislapangan);
+                    finish();
+                    break;
+                case R.id.penyedia_nav_jadwal:
+                    Intent jadwal = new Intent(PenyediaPengaturanActivity.this, PenyediaJadwalActivity.class);
+                    startActivity(jadwal);
+                    finish();
+                    break;
+            }
         }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
